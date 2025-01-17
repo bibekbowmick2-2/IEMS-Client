@@ -10,7 +10,7 @@ import im8 from "../assets/paysafe.png";
 export default function Service() {
   return (
     <div className="mt-9">
-      <p className="text-6xl font-extrabold">
+      <p className="text-4xl lg:text-6xl font-extrabold">
         We strive to provide a pleasant & appropriate service
       </p>
       <div className="grid grid-cols-1  lg:grid-cols-2 mt-16 justify-center">
@@ -26,23 +26,23 @@ export default function Service() {
             quis. Volutpat nullam facilisi viverra elit. Cras at cursus congue
             phasellus viverra tellus risus amet nisl cum.
           </p>
-          <div className="grid grid-rows-3   gap-y-5  ">
-            <div className="flex gap-5 bg-violet-500  justify-evenly  items-center h-auto p-2 rounded-md ">
-              <h1 className="text-2xl font-extrabold">Lifetime Price</h1>
+          <div className="grid grid-cols-1  lg:grid-rows-3   gap-y-5  ">
+            <div className="flex gap-5 bg-violet-500   justify-evenly  items-center h-auto p-2 rounded-md ">
+              <h1 className="text-1xl lg:text-2xl font-extrabold">Lifetime Price</h1>
               <p>$50/month</p>
-              <button className="btn btn-success">Choose</button>
+              <button className="btn btn-success p-1 md:p-2 lg:p-4">Choose</button>
             </div>
 
             <div className="flex gap-5 bg-slate-400  justify-evenly  items-center h-auto p-2 rounded-md ">
-              <h1 className="text-2xl font-extrabold">Business Price</h1>
+              <h1 className="text-1xl lg:text-2xl font-extrabold">Business Price</h1>
               <p>$186/month</p>
-              <button className="btn btn-success">Choose</button>
+              <button className="btn btn-success p-1 md:p-2 lg:p-4">Choose</button>
             </div>
 
             <div className="flex gap-5 bg-violet-500   justify-evenly  items-center h-auto p-2 rounded-md">
-              <h1 className="text-2xl font-extrabold">Advanced Price</h1>
+              <h1 className="text-1xl lg:text-2xl font-extrabold">Advanced Price</h1>
               <p>$886/month</p>
-              <button className="btn btn-success">Choose</button>
+              <button className="btn btn-success p-0 md:p-2 lg:p-4">Choose</button>
             </div>
           </div>
 
@@ -60,9 +60,9 @@ export default function Service() {
           </div>
         </div>
 
-        <div className="mx-auto lg:mx-52">
-          <div className="grid grid-rows-4 gap-y-3">
-            <div className="card bg-gray-400 w-96 shadow-xl max-h-48">
+        <div className="mx-auto lg:mx-28">
+          <div className="grid grid-cols-1  md:gap-x-3 lg:grid-rows-4 gap-y-3">
+            <div className="card bg-gray-400 w-72 md:w-80 lg:w-96 shadow-xl max-h-48">
               <div className="card-body">
                 <h2 className="card-title">Card title!</h2>
                 <p className="text-justify">If a dog chews shoes whose shoes does he choose?</p>
@@ -70,7 +70,7 @@ export default function Service() {
               </div>
             </div>
 
-            <div className="card bg-gray-400 w-96 shadow-xl max-h-48">
+            <div className="card bg-gray-400 w-72 md:w-80 lg:w-96 shadow-xl max-h-48">
               <div className="card-body">
                 <h2 className="card-title">Card title!</h2>
                 <p className="text-justify">If a dog chews shoes whose shoes does he choose?</p>
@@ -78,7 +78,7 @@ export default function Service() {
               </div>
             </div>
 
-            <div className="card bg-gray-400 w-96 shadow-xl max-h-48">
+            <div className="card bg-gray-400 w-72 md:w-80 lg:w-96 shadow-xl max-h-48">
               <div className="card-body">
                 <h2 className="card-title">Card title!</h2>
                 <p className="text-justify">If a dog chews shoes whose shoes does he choose?</p>
@@ -86,7 +86,7 @@ export default function Service() {
               </div>
             </div>
 
-            <div className="card bg-gray-400 w-96 shadow-xl max-h-48">
+            <div className="card bg-gray-400 w-72 md:w-80 lg:w-96 shadow-xl max-h-48">
               <div className="card-body">
                 <h2 className="card-title">Card title!</h2>
                 <p className="text-justify">If a dog chews shoes whose shoes does he choose?</p>

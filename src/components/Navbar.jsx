@@ -25,21 +25,23 @@ export default function Navbar() {
           className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
           <li><a>Home</a></li>
           <li><a>Login</a></li>
-        <li><a>Signup</a></li>
+          <li><button className='btn btn-neutral'>Signup</button></li>
+     
         </ul>
       </div>
-      <img src={im1} className='max-w-[150px]' alt="" />
+      <img src={im1} className='w-[80px] md:w-[120px] lg:w-[150px]' alt="" />
     </div>
     <div className="navbar-center hidden lg:flex">
       <ul className="menu menu-horizontal px-1">
         <li><a>Home</a></li>
         <li><a>Login</a></li>
+        <li><button className='btn btn-neutral'>Signup</button></li>
         {/* <li><a>Signup</a></li> */}
       </ul>
     </div>
     <div className="navbar-end flex gap-2">
      <button className='btn btn-secondary'>Login</button>
-     <button className='btn btn-neutral'>Signup</button>
+     
     </div>
   </div>
   )
