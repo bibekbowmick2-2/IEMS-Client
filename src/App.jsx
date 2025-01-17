@@ -9,10 +9,10 @@ function App() {
     
     <div className=''>
 
-     <Home/>
+     
       
      </div>
   )
 }
 
-export default App
+export default App;

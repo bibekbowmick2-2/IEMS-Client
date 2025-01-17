@@ -10,7 +10,7 @@ import im8 from "../assets/paysafe.png";
 export default function Service() {
   return (
     <div className="mt-9">
-      <p className="text-4xl lg:text-6xl font-extrabold">
+      <p className="text-4xl lg:text-6xl font-extrabold text-center">
         We strive to provide a pleasant & appropriate service
       </p>
       <div className="grid grid-cols-1  lg:grid-cols-2 mt-16 justify-center">
