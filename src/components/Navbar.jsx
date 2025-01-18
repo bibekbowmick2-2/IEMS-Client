@@ -1,8 +1,23 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import im1 from '../assets/earlnapp_logo.png'
 import { Link } from "react-router-dom";
+import { ContextProvider } from './AuthProviders/AuthProvider';
+import { Tooltip as ReactTooltip } from "react-tooltip";
+import { toast } from 'react-toastify';
 
 export default function Navbar() {
+  const { user, signOutUser} = useContext(ContextProvider);
+  const handleSignOut = () => {
+    signOutUser()
+      .then(() => {
+        // Sign-out successful.
+        toast.success("Sign-out successfully");
+        console.log("sign out");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   return (
     <div className="navbar ">
     <div className="navbar-start">
@@ -25,9 +40,14 @@ export default function Navbar() {
           tabIndex={0}
           className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
           <li><a>Home</a></li>
-          <Link to='/login'><li><a>Login</a></li></Link>
+          {
+            !user&&<>
+              <Link to='/login'><li><a>Login</a></li></Link>
       
-          <Link to='/register'><li><button className='btn btn-neutral'>Register</button></li></Link>
+          <Link to='/register'><li><a>Register</a></li></Link>
+            </>
+          }
+          
      
         </ul>
       </div>
@@ -35,16 +55,62 @@ export default function Navbar() {
     </div>
     <div className="navbar-center hidden lg:flex">
       <ul className="menu menu-horizontal px-1">
-        <li><a>Home</a></li>
+      <Link to='/'><li><a>Home</a></li></Link>
         
-        <Link to='/login'><li><a>Login</a></li></Link>
-        <Link to='/register'><li><a>Register</a></li></Link>
+       {
+            !user&&<>
+              <Link to='/login'><li><a>Login</a></li></Link>
+      
+          <Link to='/register'><li><a>Register</a></li></Link>
+            </>
+          }
   
         {/* <li><a>Signup</a></li> */}
       </ul>
     </div>
     <div className="navbar-end flex gap-2">
-     <button className='btn btn-secondary'>Login</button>
+     {/* <button className='btn btn-secondary'>Login</button> */}
+
+     {user ? (
+          <>
+            <button data-tooltip-id="my-tooltip-2" className=" lg:btn mr-2 text-[12px]">
+              {user?.email}
+              <br/>{user?.displayName}
+            </button>
+            <ReactTooltip
+              id="my-tooltip-2"
+              place="left-start"
+              variant="info"
+              content=<>
+                <div class="avatar z-10">
+                  <div class="w-24 rounded-full">
+                    <img src={user?.photoURL.replace(/"/g, "")} />
+                  </div>
+                </div>
+
+                
+              </>
+            />
+
+            
+            <a className="btn" onClick={handleSignOut}>
+              Sign Out
+            </a>
+          </>
+        ) : (
+          <>
+            {/* <li>
+              <NavLink to="/login">Login</NavLink>
+            </li> */}
+            {/* <li>
+              <NavLink to="/registration">Registration</NavLink>
+            </li> */}
+
+            
+
+            
+          </>
+        )}
      
     </div>
   </div>
