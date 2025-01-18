@@ -9,9 +9,11 @@ import {
   updateProfile,
 } from "firebase/auth";
 import auth from "../../firebase.init";
+import axios from 'axios'
 // import Swal from "sweetalert2";
 import { data } from "react-router-dom";
 import { toast } from 'react-toastify';
+
 export const ContextProvider = createContext();
 
 const AuthProvider = ({ children }) => {
@@ -138,16 +140,55 @@ const AuthProvider = ({ children }) => {
   
 
 
+  // useEffect(() => {
+  //   const unsubscribe = onAuthStateChanged(auth, (CurrentUser) => {
+  //     console.log("current user", CurrentUser);
+  //     setUser(CurrentUser);
+  //     setLoading(false);
+  //   });
+  //   return () => {
+  //     unsubscribe();
+  //   };
+  // }, []);
+
+
+
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (CurrentUser) => {
-      console.log("current user", CurrentUser);
-      setUser(CurrentUser);
-      setLoading(false);
-    });
+    const unsubscribe = onAuthStateChanged(auth, async currentUser => {
+      console.log('CurrentUser-->', currentUser?.email, currentUser?.displayName, currentUser?.photoURL)
+      if (currentUser?.email) {
+        setUser(currentUser)
+        // save user info in db
+        await axios.post(
+          `${import.meta.env.VITE_API_URL}/users/${currentUser?.email}`,
+          {
+            email: currentUser?.email,
+            name: currentUser?.displayName,
+            image: currentUser?.photoURL,
+
+
+          }
+        )
+        // Get JWT token
+        await axios.post(
+          `${import.meta.env.VITE_API_URL}/jwt`,
+          {
+            email: currentUser?.email,
+          },
+          { withCredentials: true }
+        )
+      } else {
+        setUser(currentUser)
+        await axios.get(`${import.meta.env.VITE_API_URL}/logout`, {
+          withCredentials: true,
+        })
+      }
+      setLoading(false)
+    })
     return () => {
-      unsubscribe();
-    };
-  }, []);
+      return unsubscribe()
+    }
+  }, [])
 
 
 
