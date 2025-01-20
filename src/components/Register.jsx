@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { ContextProvider } from './AuthProviders/AuthProvider';
 export default function Login() {
   const navigate = useNavigate();
-  const { handleSubmit,handleGoogle} = useContext(ContextProvider);
+  const { handleSubmit,handleGoogle,handleGithub} = useContext(ContextProvider);
 
   const handleformSubmit = (e) => {
     
@@ -48,8 +48,12 @@ export default function Login() {
       
       <button type="submit">Register</button>
       <div class="register">
-        <button onClick={handleGoogle} className='rounded-md'>Login with Google</button>
+        <button  onClick={() => handleGoogle(navigate)} className='btn btn-success rounded-md'>Login with Google</button>
+      
+        <button  onClick={() => handleGithub(navigate)} className='btn btn-primary rounded-md ml-2'>Login with Github</button>
       </div>
+
+      
     </form>
   </div>
   </div>

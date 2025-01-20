@@ -7,6 +7,7 @@ import {
   signInWithPopup,
   GoogleAuthProvider,
   updateProfile,
+  GithubAuthProvider 
 } from "firebase/auth";
 import auth from "../../firebase.init";
 import axios from 'axios'
@@ -14,13 +15,16 @@ import axios from 'axios'
 import { data } from "react-router-dom";
 import { toast } from 'react-toastify';
 
+
 export const ContextProvider = createContext();
 
 const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [user, setUser] = useState(null);
   const provider = new GoogleAuthProvider();
+  const provider2 = new GithubAuthProvider();
   const [passwordError, setPasswordError] = useState("");
+ 
 
  
 
@@ -127,6 +131,35 @@ const AuthProvider = ({ children }) => {
       });
   };
 
+
+
+  const handleGithub = (navigate) => {
+    setLoading(true);
+    signInWithPopup(auth, provider2)
+  .then((result) => {
+    // This gives you a GitHub Access Token. You can use it to access the GitHub API.
+    const credential = GithubAuthProvider.credentialFromResult(result);
+    const token = credential.accessToken;
+    console.log("Signed in:", result.user);
+    setUser(result.user);
+        toast.success("Github Sign in successfully");
+        setLoading(false);
+        navigate("/");
+        
+      
+    
+  }).catch((error) => {
+    // Handle Errors here.
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // The email of the user's account used.
+    const email = error.customData.email;
+    // The AuthCredential type that was used.
+    const credential = GithubAuthProvider.credentialFromError(error);
+    // ...
+  })
+  }
+
   const signInUser = (email, password) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
@@ -142,9 +175,11 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async currentUser => {
+   
+      console.log('currentUser full-->', currentUser);
       console.log('CurrentUser-->', currentUser?.email, currentUser?.displayName, currentUser?.photoURL);
       //  console.log('role-->', role);
-      if (currentUser?.email) {
+      if (currentUser?.email || currentUser?.displayName ) {
         setUser(currentUser)
         // save user info in db
         const res =await axios.post(
@@ -172,6 +207,8 @@ const AuthProvider = ({ children }) => {
           },
           { withCredentials: true }
         )
+
+         
       } else {
         setUser(currentUser)
         await axios.get(`${import.meta.env.VITE_API_URL}/logout`, {
@@ -198,6 +235,7 @@ const AuthProvider = ({ children }) => {
         loading,
         user,
         passwordError,
+        handleGithub
       
       }}
     >
