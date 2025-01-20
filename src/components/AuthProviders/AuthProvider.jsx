@@ -21,6 +21,7 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const provider = new GoogleAuthProvider();
   const [passwordError, setPasswordError] = useState("");
+
  
 
 
@@ -32,17 +33,11 @@ const AuthProvider = ({ children }) => {
     const photo = form.photo.value;
     const password = form.password.value;
     const role = form.role.value;
+    
     console.log(name, email, photo, password, role);
     
       setLoading(true);
-      // const error = validatePassword(password);
-      // if (error) {
-      //   setPasswordError(error); // Set the error message
-        
-      //   return; // Stop form submission
-      // }
-  
-      // setPasswordError("");
+     
 
     
 
@@ -64,6 +59,10 @@ const AuthProvider = ({ children }) => {
   
       }
        );
+
+
+
+      
 
 
       // setLoading(false);
@@ -137,38 +136,34 @@ const AuthProvider = ({ children }) => {
     return signOut(auth);
   };
 
-  
 
-
-  // useEffect(() => {
-  //   const unsubscribe = onAuthStateChanged(auth, (CurrentUser) => {
-  //     console.log("current user", CurrentUser);
-  //     setUser(CurrentUser);
-  //     setLoading(false);
-  //   });
-  //   return () => {
-  //     unsubscribe();
-  //   };
-  // }, []);
 
 
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async currentUser => {
-      console.log('CurrentUser-->', currentUser?.email, currentUser?.displayName, currentUser?.photoURL)
+      console.log('CurrentUser-->', currentUser?.email, currentUser?.displayName, currentUser?.photoURL);
+      //  console.log('role-->', role);
       if (currentUser?.email) {
         setUser(currentUser)
         // save user info in db
-        await axios.post(
+        const res =await axios.post(
           `${import.meta.env.VITE_API_URL}/users/${currentUser?.email}`,
           {
             email: currentUser?.email,
             name: currentUser?.displayName,
             image: currentUser?.photoURL,
+            role: 'admin',
+           
 
 
           }
+
         )
+
+
+         console.log(res.data?.message);
+        
         // Get JWT token
         await axios.post(
           `${import.meta.env.VITE_API_URL}/jwt`,

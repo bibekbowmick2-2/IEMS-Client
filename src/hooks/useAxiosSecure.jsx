@@ -19,14 +19,12 @@ const useAxiosSecure = () => {
       },
       async error => {
         console.log('Error caught from axios interceptor-->', error.response)
-        if (error.response.status === 401 || error.response.status === 403) {
-          // logout
-          signOutUser()
+        if (error.response.status === 401 || error.response.status === 403 ) {
+          await signOutUser()
           .then(() => {
-            // Sign-out successful.
-            toast.error("You are not verified");
-            console.log("sign out");
-            navigate('/login')
+            toast.error('unauthorized access');
+            navigate('/login');
+
           })
           .catch((error) => {
             console.log(error);

@@ -47,6 +47,13 @@ export default function Navbar() {
           <Link to='/register'><li><a>Register</a></li></Link>
             </>
           }
+
+
+          {
+            user&&<> 
+            <Link to='/dasboard'><li><a>Dashboard</a></li></Link>
+            </>
+          }
           
      
         </ul>
@@ -62,6 +69,13 @@ export default function Navbar() {
               <Link to='/login'><li><a>Login</a></li></Link>
       
           <Link to='/register'><li><a>Register</a></li></Link>
+            </>
+          }
+
+
+          {
+            user&&<> 
+            <Link to='/dasboard'><li><a>Dashboard</a></li></Link>
             </>
           }
   

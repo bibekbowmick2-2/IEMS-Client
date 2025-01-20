@@ -36,8 +36,8 @@ export default function Login() {
       </div>
 
       <div className="input-field ">
-            <select name="role" required>
-              <option  value="" disabled selected>
+            <select name="role" required defaultValue="">
+              <option  value="" disabled >
                 Select your role
               </option>
               <option value="student">Student</option>
