@@ -10,24 +10,7 @@ import {
   } from "@material-tailwind/react";
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
    
-  function CheckIcon() {
-    return (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        strokeWidth={2}
-        stroke="currentColor"
-        className="h-3 w-3"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M4.5 12.75l6 6 9-13.5"
-        />
-      </svg>
-    );
-  }
+  
 export default function ViewStudySession() {
     const axiosSecure = useAxiosSecure();
     const { data: users = [], refetch } = useQuery({
@@ -41,7 +24,7 @@ export default function ViewStudySession() {
     <div><p className='text-3xl front-extrabold text-center mb-11'>View Study Session</p>
 
 
-    <div className='grid grid-cols-3 justify-center'>
+    <div className='grid grid-cols-3 gap-y-5 justify-center'>
 
     {
         users.map ((user) => (
