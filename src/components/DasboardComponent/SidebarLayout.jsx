@@ -1,17 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Sidebar } from "flowbite-react";
 // import { HiArrowSmRight, HiChartPie, HiInbox, HiShoppingBag, HiTable, HiUser } from "react-icons/hi";
 import { HiChartPie, HiInbox,HiTable} from "react-icons/hi";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Links, Outlet } from "react-router-dom";
 import useAdmin from "../../hooks/useAdmin";
+import { ContextProvider } from "../AuthProviders/AuthProvider";
 
 
 const SidebarLayout = () => {
    const [isAdmin] = useAdmin();
+   const {user}= useContext(ContextProvider);
   return (
     <div className="flex">
       {/* Sidebar */}
-      <div className="w-64 h-screen bg-gray-800 text-white">
+      <div className="w-64 h-screen  bg-gray-800 text-white">
         <Sidebar aria-label="Sidebar with multi-level dropdown example">
         {
           isAdmin && <Sidebar.Items>
@@ -56,9 +58,13 @@ const SidebarLayout = () => {
       <div className="flex-1 p-6">
       <div className="navbar bg-base-100">
   <div className="flex-1">
-    <a className="btn btn-ghost text-5xl font-extrabold italic">Admin Panel</a>
+  {
+    isAdmin && <a className="btn btn-ghost text-5xl font-extrabold italic">Admin Panel</a>
+  }
+    
   </div>
   <div className="flex-none gap-2">
+  <Link to= "/" className="btn btn-accent">Home </Link>
     <div className="form-control">
       <input type="text" placeholder="Search" className="input input-bordered w-24 md:w-auto" />
     </div>
@@ -67,7 +73,7 @@ const SidebarLayout = () => {
         <div className="w-10 rounded-full">
           <img
             alt="Tailwind CSS Navbar component"
-            src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+            src={user?.photoURL}/>
         </div>
       </div>
       <ul

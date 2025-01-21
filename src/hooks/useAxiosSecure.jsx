@@ -20,12 +20,16 @@ const useAxiosSecure = () => {
       async error => {
         console.log('Error caught from axios interceptor-->', error.response)
         if (error.response.status === 401 || error.response.status === 403 ) {
+
           await signOutUser()
           .then(() => {
-            toast.error('unauthorized access');
-            navigate('/login');
 
+            // Sign-out successful.
+            navigate('/login');
+            toast.error("Unauthorized Access");
+            console.log("sign out");
           })
+          
           .catch((error) => {
             console.log(error);
           });

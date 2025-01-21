@@ -41,7 +41,7 @@ export default function Login() {
                 Select your role
               </option>
               <option value="student">Student</option>
-              <option value="tutor">Tutor</option>
+              <option value="tutor" disabled>Tutor(❗Requires Permission)</option>
               <option value="admin" disabled>Admin(❗Requires Permission)</option>
             </select>
           

@@ -8,7 +8,7 @@ import { ContextProvider } from "../AuthProviders/AuthProvider";
 const AdminRoute = ({children}) => {
     const { user } = useContext(ContextProvider);
     const [isAdmin] = useAdmin();
- 
+    
 
     if (user && isAdmin) {
         return children;
