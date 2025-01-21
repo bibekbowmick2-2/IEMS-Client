@@ -12,6 +12,11 @@ import AllMaterials from "../components/DasboardComponent/AllMaterials";
 import AllUsers from "../components/DasboardComponent/AllUsers";
 import SidebarLayout from "../components/DasboardComponent/SidebarLayout";
 import AdminRoute from "../components/Routes/AdminRoute";
+import CreateStudysession from "../components/DasboardComponent/TutorDasboard/CreateStudysession";
+import ViewStudySession from "../components/DasboardComponent/TutorDasboard/ViewStudySession";
+import UploadMaterials from "../components/DasboardComponent/TutorDasboard/UploadMaterials";
+import ViewMaterials from "../components/DasboardComponent/TutorDasboard/ViewMaterials";
+import PrivateTutorRoute from "../components/Routes/PrivateTutorRoute";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -72,6 +77,37 @@ const router = createBrowserRouter([
         path: "allmaterials",
         element:<AdminRoute><AllMaterials/></AdminRoute>,
       },
+
+
+
+
+      {
+        path: "createstudysession",
+        element:<PrivateTutorRoute><CreateStudysession/></PrivateTutorRoute>,
+      },
+      
+      
+      
+      {
+        path: "viewstudysession",
+        element: <PrivateTutorRoute><ViewStudySession/></PrivateTutorRoute>,
+      },
+      
+      
+      {
+        path: "uploadmaterials",
+        element: <PrivateTutorRoute><UploadMaterials/></PrivateTutorRoute>,
+      },
+      
+      {
+        path: "viewmaterials",
+        element:<PrivateTutorRoute><ViewMaterials/></PrivateTutorRoute>,
+      },
+
+
+
+
+      
       
       
       

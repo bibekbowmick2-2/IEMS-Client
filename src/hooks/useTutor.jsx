@@ -5,18 +5,18 @@ import { ContextProvider } from "../components/AuthProviders/AuthProvider";
 
 
 
-const useAdmin = () => {
+const useTutor = () => {
     const { user } = useContext(ContextProvider);
     const axiosSecure = useAxiosSecure();
-    const { data: isAdmin, isPending: isAdminLoading,  } = useQuery({
-        queryKey: user?.email ? [user?.email, 'isAdmin'] : [], 
+    const { data: isTutor, isPending: isTutorLoading,  } = useQuery({
+        queryKey: user?.email ? [user?.email, 'isTutor'] : [], 
         queryFn: async () => {
-            const res = await axiosSecure.get(`/users/admin/${user.email}`);
+            const res = await axiosSecure.get(`/users/tutor/${user.email}`);
         
-            return res.data?.admin;
+            return res.data?.tutor;
         }
     })
-    return [isAdmin, isAdminLoading]
+    return [isTutor, isTutorLoading]
 };
 
-export default useAdmin;
+export default useTutor;

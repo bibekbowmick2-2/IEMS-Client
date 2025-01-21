@@ -5,18 +5,19 @@ import { HiChartPie, HiInbox,HiTable} from "react-icons/hi";
 import { Link, Links, Outlet } from "react-router-dom";
 import useAdmin from "../../hooks/useAdmin";
 import { ContextProvider } from "../AuthProviders/AuthProvider";
+import useTutor from "../../hooks/useTutor";
 
 
 const SidebarLayout = () => {
    const [isAdmin] = useAdmin();
+   const [isTutor] = useTutor();
    const {user}= useContext(ContextProvider);
   return (
-    <div className="flex">
-      {/* Sidebar */}
-      <div className="w-64 h-screen  bg-gray-800 text-white">
+    <div className="flex h-full ">
+      <div className="w-64 h-screen   text-white">
         <Sidebar aria-label="Sidebar with multi-level dropdown example">
         {
-          isAdmin && <Sidebar.Items>
+          isAdmin && <Sidebar.Items >
             <Sidebar.ItemGroup>
 
             
@@ -50,16 +51,52 @@ const SidebarLayout = () => {
             </Sidebar.ItemGroup>
           </Sidebar.Items>
         }
+
+
+
+
+
+
+
+
+
+        {
+            isTutor && <Sidebar.Items>
+            <Sidebar.ItemGroup>
+
+            
+              <Link to="createstudysession">
+                <Sidebar.Item icon={HiChartPie}>Create study session</Sidebar.Item>
+              </Link>
+              <Link to="viewstudysession">
+                <Sidebar.Item icon={HiInbox}>View all study sessions(Tutor)</Sidebar.Item>
+              </Link>
+              <Link to="uploadmaterials">
+                <Sidebar.Item icon={HiTable}>Upload materials </Sidebar.Item>
+              </Link>
+              <Link to="viewmaterials">
+                <Sidebar.Item icon={HiTable}>View all materials</Sidebar.Item>
+              </Link>
+        
+            </Sidebar.ItemGroup>
+          </Sidebar.Items>
+        }
           
         </Sidebar>
       </div>
 
       {/* Main Content */}
-      <div className="flex-1 p-6">
-      <div className="navbar bg-base-100">
+      <div className="flex-1 p-6 bg-indigo-400">
+      <div className="navbar ">
   <div className="flex-1">
   {
     isAdmin && <a className="btn btn-ghost text-5xl font-extrabold italic">Admin Panel</a>
+
+  }
+
+  {
+    isTutor && <a className="btn btn-ghost text-5xl font-extrabold italic">Tutor Panel</a>
+    
   }
     
   </div>
@@ -92,7 +129,10 @@ const SidebarLayout = () => {
   </div>
 </div>
 
-      
+          <div className="mt-10 p-20">
+          {isTutor &&  <p className="text-center front-extrabold text-3xl ">The TutorPanel is a dynamic and user-friendly platform designed to streamline the experience for tutors managing their teaching sessions and interacting with students. It empowers tutors by providing essential features like session creation, class scheduling, and student registration tracking, all within an intuitive interface. </p>}
+          {isAdmin && <p className="text-center front-extrabold text-3xl ">The AdminPanel is a powerful and centralized platform tailored for administrators to efficiently oversee and manage the operations of an educational system or organization. It offers a wide range of features, including user role management, session approval, fee customization, and comprehensive reporting tools, ensuring smooth coordination between tutors, students, and the system's functionalities. With enhanced security and role-based access control, administrators can maintain oversight while ensuring data integrity and user privacy.</p>}
+          </div>
                 <Outlet></Outlet>
             </div>
     </div>
