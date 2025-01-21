@@ -2,10 +2,11 @@ import React from "react";
 import { Sidebar } from "flowbite-react";
 // import { HiArrowSmRight, HiChartPie, HiInbox, HiShoppingBag, HiTable, HiUser } from "react-icons/hi";
 import { HiChartPie, HiInbox,HiTable} from "react-icons/hi";
-import { Link } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import useAdmin from "../../hooks/useAdmin";
 
-const SidebarLayout = ({ children }) => {
+
+const SidebarLayout = () => {
    const [isAdmin] = useAdmin();
   return (
     <div className="flex">
@@ -15,7 +16,9 @@ const SidebarLayout = ({ children }) => {
         {
           isAdmin && <Sidebar.Items>
             <Sidebar.ItemGroup>
-              <Link to="/dasboard">
+
+            
+              <Link to="dasboard">
                 <Sidebar.Item icon={HiChartPie}>Dashboard</Sidebar.Item>
               </Link>
               {/* <Sidebar.Collapse icon={HiShoppingBag} label="E-commerce">
@@ -32,13 +35,13 @@ const SidebarLayout = ({ children }) => {
                   <Sidebar.Item>Shipping</Sidebar.Item>
                 </Link>
               </Sidebar.Collapse> */}
-              <Link to="/allusers">
+              <Link to="allusers">
                 <Sidebar.Item icon={HiInbox}>All Users</Sidebar.Item>
               </Link>
-              <Link to="/allstudysession">
+              <Link to="allstudysession">
                 <Sidebar.Item icon={HiTable}> All Study Session</Sidebar.Item>
               </Link>
-              <Link to="/allmaterials">
+              <Link to="allmaterials">
                 <Sidebar.Item icon={HiTable}> All Materials</Sidebar.Item>
               </Link>
         
@@ -50,7 +53,42 @@ const SidebarLayout = ({ children }) => {
       </div>
 
       {/* Main Content */}
-      <div className="flex-1 p-6">{children}</div>
+      <div className="flex-1 p-6">
+      <div className="navbar bg-base-100">
+  <div className="flex-1">
+    <a className="btn btn-ghost text-5xl font-extrabold italic">Admin Panel</a>
+  </div>
+  <div className="flex-none gap-2">
+    <div className="form-control">
+      <input type="text" placeholder="Search" className="input input-bordered w-24 md:w-auto" />
+    </div>
+    <div className="dropdown dropdown-end">
+      <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+        <div className="w-10 rounded-full">
+          <img
+            alt="Tailwind CSS Navbar component"
+            src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+        </div>
+      </div>
+      <ul
+        tabIndex={0}
+        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+        <li>
+          <a className="justify-between">
+            Profile
+            <span className="badge">New</span>
+          </a>
+        </li>
+        <li><a>Settings</a></li>
+        <li><a>Logout</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+      
+                <Outlet></Outlet>
+            </div>
     </div>
   );
 };

@@ -35,18 +35,18 @@ export default function Login() {
         <label>Enter your image</label>
       </div>
 
-      <div className="input-field ">
-            <select name="role" required defaultValue="">
+      
+            <select name="role" required defaultValue="" className='rounded-md'>
               <option  value="" disabled >
                 Select your role
               </option>
               <option value="student">Student</option>
               <option value="tutor">Tutor</option>
-              <option value="admin">Admin</option>
+              <option value="admin" disabled>Admin(❗Requires Permission)</option>
             </select>
-          </div>
+          
       
-      <button type="submit">Register</button>
+      <button className='mt-4 p-1.5 text-gray-50' type="submit">Register</button>
       <div class="register">
         <button  onClick={() => handleGoogle(navigate)} className='btn btn-success rounded-md'>Login with Google</button>
       

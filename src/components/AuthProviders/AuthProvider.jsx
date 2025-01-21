@@ -65,6 +65,22 @@ const AuthProvider = ({ children }) => {
        );
 
 
+       const res =await axios.post(
+        `${import.meta.env.VITE_API_URL}/users/${user?.email}`,
+        {
+          email: user?.email,
+          name: user?.displayName,
+          image: user?.photoURL,
+          role: 'student',
+         
+
+
+        }
+
+      )
+       console.log(res.data?.message);
+
+
 
       
 
@@ -123,6 +139,22 @@ const AuthProvider = ({ children }) => {
         toast.success("Google Sign in successfully");
         setLoading(false);
         navigate("/");
+      }).then(() => {
+        const res = axios.post(
+          `${import.meta.env.VITE_API_URL}/users/${user?.email}`,
+          {
+            email: user?.email,
+            name: user?.displayName,
+            image: user?.photoURL,
+            role: 'student',
+           
+  
+  
+          }
+  
+        )
+         console.log(res.data?.message);
+  
       })
       .catch((error) => {
         // Handle Errors here.
@@ -148,6 +180,23 @@ const AuthProvider = ({ children }) => {
         
       
     
+  }).then(() => {
+
+    const res =axios.post(
+      `${import.meta.env.VITE_API_URL}/users/${user?.email}`,
+      {
+        email: user?.email,
+        name: user?.displayName,
+        image: user?.photoURL,
+        role: 'student',
+       
+
+
+      }
+
+    )
+     console.log(res.data?.message);
+
   }).catch((error) => {
     // Handle Errors here.
     const errorCode = error.code;
@@ -182,22 +231,7 @@ const AuthProvider = ({ children }) => {
       if (currentUser?.email || currentUser?.displayName ) {
         setUser(currentUser)
         // save user info in db
-        const res =await axios.post(
-          `${import.meta.env.VITE_API_URL}/users/${currentUser?.email}`,
-          {
-            email: currentUser?.email,
-            name: currentUser?.displayName,
-            image: currentUser?.photoURL,
-            role: 'admin',
-           
-
-
-          }
-
-        )
-
-
-         console.log(res.data?.message);
+        
         
         // Get JWT token
         await axios.post(
@@ -210,7 +244,7 @@ const AuthProvider = ({ children }) => {
 
          
       } else {
-        setUser(currentUser)
+        setUser(currentUser);
         await axios.get(`${import.meta.env.VITE_API_URL}/logout`, {
           withCredentials: true,
         })

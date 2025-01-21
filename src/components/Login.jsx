@@ -29,7 +29,7 @@ export default function Login() {
         </label>
         <a href="#">Forgot password?</a>
       </div> */}
-      <button type="submit">Log In</button>
+      <button className='text-gray-50' type="submit">Log In</button>
       <div class="register">
         <p>Don't have an account? <a href="#">Register</a></p>
       </div>

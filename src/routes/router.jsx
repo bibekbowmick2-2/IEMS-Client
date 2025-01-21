@@ -41,33 +41,46 @@ const router = createBrowserRouter([
     
   },
 
-{
-  path: "/dasboard",
-  element:<AdminRoute><SidebarLayout><Dasboard/></SidebarLayout> </AdminRoute>,
-},
-
-
-
-{
-  path: "/allusers",
-  element: <AdminRoute><SidebarLayout><AllUsers/></SidebarLayout></AdminRoute>,
-},
-
-
-{
-  path: "/allstudysession",
-  element: <AdminRoute><SidebarLayout><AllStudySession/></SidebarLayout></AdminRoute>,
-},
-
-{
-  path: "/allmaterials",
-  element:<AdminRoute><SidebarLayout><AllMaterials/></SidebarLayout> </AdminRoute>,
-},
-
-
 
 
   
+
+  {
+    path: "/sidebar",
+    element:<SidebarLayout/>,
+    children: [
+      
+      {
+        path: "dasboard",
+        element:<AdminRoute><Dasboard/></AdminRoute>,
+      },
+      
+      
+      
+      {
+        path: "allusers",
+        element: <AdminRoute><AllUsers/></AdminRoute>,
+      },
+      
+      
+      {
+        path: "allstudysession",
+        element: <AdminRoute><AllStudySession/></AdminRoute>,
+      },
+      
+      {
+        path: "allmaterials",
+        element:<AdminRoute><AllMaterials/></AdminRoute>,
+      },
+      
+      
+      
+      
+        
+      
+      
+    ]
+  },
 
 
   {

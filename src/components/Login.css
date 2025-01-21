@@ -103,7 +103,7 @@ h2 {
   text-decoration: underline;
 }
 button {
-  background: #fff;
+  background: transparent;
   color: #000;
   font-weight: 600;
   border: none;
@@ -124,3 +124,4 @@ button:hover {
   margin-top: 30px;
   color: #fff;
 }
+

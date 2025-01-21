@@ -75,7 +75,7 @@ export default function Navbar() {
 
           {
             user&&<> 
-            <Link to='/dasboard'><li><a>Dashboard</a></li></Link>
+            <Link to='/sidebar'><li><a>Dashboard</a></li></Link>
             </>
           }
   
