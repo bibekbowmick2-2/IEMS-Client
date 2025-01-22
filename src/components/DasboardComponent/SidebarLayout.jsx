@@ -14,7 +14,7 @@ const SidebarLayout = () => {
    const {user}= useContext(ContextProvider);
   return (
     <div className="flex h-full ">
-      <div className="w-64 h-screen   text-white">
+      <div className="w-64 min-h-[100vh]   text-white">
         <Sidebar aria-label="Sidebar with multi-level dropdown example">
         {
           isAdmin && <Sidebar.Items >

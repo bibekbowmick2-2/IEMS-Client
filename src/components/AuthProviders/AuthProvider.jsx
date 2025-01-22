@@ -131,83 +131,74 @@ const AuthProvider = ({ children }) => {
       )
   };
 
-  const handleGoogle = (navigate) => {
+  
+
+  const handleGoogle = async (navigate) => {
     setLoading(true);
-    signInWithPopup(auth, provider)
-      .then((result) => {
-        setUser(result.user);
-        toast.success("Google Sign in successfully");
-        setLoading(false);
-        navigate("/");
-      }).then(() => {
-        const res = axios.post(
-          `${import.meta.env.VITE_API_URL}/users/${user?.email}`,
-          {
-            email: user?.email,
-            name: user?.displayName,
-            image: user?.photoURL,
-            role: 'student',
-           
   
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user; // Use the returned user directly
+      console.log("Signed in Google:", user);
   
-          }
+      // Save user to DB
+      await axios.post(
+        `${import.meta.env.VITE_API_URL}/users/${user.email}`,
+        {
+          email: user.email,
+          name: user.displayName,
+          image: user.photoURL,
+          role: "student",
+        }
+      );
   
-        )
-         console.log(res.data?.message);
+      toast.success("Google Sign in successfully");
+      navigate("/");
   
-      })
-      .catch((error) => {
-        // Handle Errors here.
-        const errorCode = error.code;
-        const errorMessage = error.message;
-      });
+    } catch (error) {
+      console.error("Google Sign-in Error:", error);
+      toast.error("Google Sign-in failed");
+    } finally {
+      setLoading(false);
+    }
+  };
+  
+
+
+
+  const handleGithub = async (navigate) => {
+    setLoading(true);
+  
+    try {
+      // Sign in with GitHub popup
+      const result = await signInWithPopup(auth, provider2);
+      const user = result.user; // Use the returned user directly
+      console.log("Signed in with GitHub:", user);
+  
+      // Save user to DB
+      const res = await axios.post(
+        `${import.meta.env.VITE_API_URL}/users/${user.email}`,
+        {
+          email: user.email,
+          name: user.displayName,
+          image: user.photoURL,
+          role: "student",
+        }
+      );
+      console.log(res.data?.message);
+  
+      toast.success("GitHub Sign in successfully");
+      navigate("/");
+  
+    } catch (error) {
+      console.error("GitHub Sign-in Error:", error);
+      toast.error("GitHub Sign-in failed");
+    } finally {
+      setLoading(false);
+    }
   };
 
-
-
-  const handleGithub = (navigate) => {
-    setLoading(true);
-    signInWithPopup(auth, provider2)
-  .then((result) => {
-    // This gives you a GitHub Access Token. You can use it to access the GitHub API.
-    const credential = GithubAuthProvider.credentialFromResult(result);
-    const token = credential.accessToken;
-    console.log("Signed in:", result.user);
-    setUser(result.user);
-        toast.success("Github Sign in successfully");
-        setLoading(false);
-        navigate("/");
-        
-      
-    
-  }).then(() => {
-
-    const res =axios.post(
-      `${import.meta.env.VITE_API_URL}/users/${user?.email}`,
-      {
-        email: user?.email,
-        name: user?.displayName,
-        image: user?.photoURL,
-        role: 'student',
-       
-
-
-      }
-
-    )
-     console.log(res.data?.message);
-
-  }).catch((error) => {
-    // Handle Errors here.
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    // The email of the user's account used.
-    const email = error.customData.email;
-    // The AuthCredential type that was used.
-    const credential = GithubAuthProvider.credentialFromError(error);
-    // ...
-  })
-  }
+  
 
   const signInUser = (email, password) => {
     return signInWithEmailAndPassword(auth, email, password);
@@ -221,41 +212,39 @@ const AuthProvider = ({ children }) => {
 
 
 
-
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async currentUser => {
-   
-      console.log('currentUser full-->', currentUser);
-      console.log('CurrentUser-->', currentUser?.email, currentUser?.displayName, currentUser?.photoURL);
-      //  console.log('role-->', role);
-      if (currentUser?.email || currentUser?.displayName ) {
-        setUser(currentUser)
-        // save user info in db
-        
-        
-        // Get JWT token
-        await axios.post(
-          `${import.meta.env.VITE_API_URL}/jwt`,
-          {
-            email: currentUser?.email,
-          },
-          { withCredentials: true }
-        )
-
-         
+    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+      console.log("Auth State Changed:", currentUser);
+  
+      if (currentUser) {
+        setUser(currentUser); // Update user state
+        try {
+          // Save user info to DB and get JWT
+          await axios.post(
+            `${import.meta.env.VITE_API_URL}/jwt`,
+            { email: currentUser.email },
+            { withCredentials: true }
+          );
+        } catch (error) {
+          console.error("Error during JWT token retrieval:", error);
+        }
       } else {
-        setUser(currentUser);
-        await axios.get(`${import.meta.env.VITE_API_URL}/logout`, {
-          withCredentials: true,
-        })
+        setUser(null); // Clear user state
+        try {
+          await axios.get(`${import.meta.env.VITE_API_URL}/logout`, {
+            withCredentials: true,
+          });
+        } catch (error) {
+          console.error("Error during logout:", error);
+        }
       }
-      setLoading(false)
-    })
-    return () => {
-      return unsubscribe()
-    }
-  }, [])
-
+  
+      setLoading(false); // Stop loading
+    });
+  
+    return () => unsubscribe();
+  }, []);
+  
 
 
   return (

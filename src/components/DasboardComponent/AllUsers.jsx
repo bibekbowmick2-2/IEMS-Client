@@ -84,7 +84,7 @@ const AllUsers = () => {
         <h2 className="text-3xl">Total Users: {users.length}</h2>
       </div>
       <div className="overflow-x-auto">
-        <table className="table table-zebra w-full">
+        <table  className="table table-zebra w-full ">
           {/* head */}
           <thead>
             <tr>
