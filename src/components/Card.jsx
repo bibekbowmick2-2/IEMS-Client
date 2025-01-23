@@ -8,6 +8,7 @@ import {
   Typography,
   Button,
 } from "@material-tailwind/react";
+import { Link } from "react-router-dom";
 
 export default function ViewSessions() {
   const { sessions } = useStudySessions();
@@ -125,6 +126,11 @@ export default function ViewSessions() {
                         </strong>{" "}
                         {session.status.toUpperCase()}
                       </Typography>
+                    </li>
+
+
+                    <li className="flex items-start gap-2 text-purple-500">
+                   <Link to={`/session-details/${session._id}`} ><a className="underline">Read More</a></Link>
                     </li>
                   </ul>
                 </CardBody>

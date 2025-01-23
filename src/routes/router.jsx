@@ -17,6 +17,8 @@ import ViewStudySession from "../components/DasboardComponent/TutorDasboard/View
 import UploadMaterials from "../components/DasboardComponent/TutorDasboard/UploadMaterials";
 import ViewMaterials from "../components/DasboardComponent/TutorDasboard/ViewMaterials";
 import PrivateTutorRoute from "../components/Routes/PrivateTutorRoute";
+import PrivateRoute from "../components/Routes/PrivateRoute";
+import ProductDetailsPage from "../components/ProductDetails/ProductDetailsPage";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -39,6 +41,14 @@ const router = createBrowserRouter([
         path: "/register",
         element: <Register/>,
       },
+
+      
+
+      {
+        path: "/session-details/:id",
+        element: <PrivateRoute><ProductDetailsPage/></PrivateRoute>,
+        loader: () => fetch(`${import.meta.env.VITE_API_URL}/sessions`),
+      }
 
       
 
