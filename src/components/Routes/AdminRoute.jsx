@@ -16,10 +16,7 @@ const AdminRoute = ({children}) => {
 
 
 
-    // if (loading || isAdminLoading) {
-    //     return <progress className="progress w-56"></progress>
-    // }
-
+    
     return (
         <div>
             <Navigate to="/"></Navigate>

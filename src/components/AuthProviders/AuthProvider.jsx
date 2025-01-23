@@ -26,7 +26,12 @@ const AuthProvider = ({ children }) => {
   const [passwordError, setPasswordError] = useState("");
  
 
- 
+
+
+
+
+
+
 
 
   const handleSubmit = async (event, navigate) => {
@@ -258,7 +263,8 @@ const AuthProvider = ({ children }) => {
         loading,
         user,
         passwordError,
-        handleGithub
+        handleGithub,
+        
       
       }}
     >
