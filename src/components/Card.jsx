@@ -130,7 +130,7 @@ export default function ViewSessions() {
 
 
                     <li className="flex items-start gap-2 text-purple-500">
-                   <Link to={`/session-details/${session._id}`} ><a className="underline">Read More</a></Link>
+                   <Link to={`/session-details/${session.session_title}`} ><a className="underline">Read More</a></Link>
                     </li>
                   </ul>
                 </CardBody>

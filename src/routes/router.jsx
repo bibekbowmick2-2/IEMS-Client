@@ -49,7 +49,7 @@ const router = createBrowserRouter([
       
 
       {
-        path: "/session-details/:id",
+        path: "/session-details/:session_title",
         element: <PrivateRoute><ProductDetailsPage/></PrivateRoute>,
         loader: () => fetch(`${import.meta.env.VITE_API_URL}/sessions`),
       }

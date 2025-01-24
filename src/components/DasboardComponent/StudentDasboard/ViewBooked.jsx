@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import { ContextProvider } from "../../AuthProviders/AuthProvider";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 
 export default function ViewBooked() {
@@ -123,12 +124,7 @@ export default function ViewBooked() {
                 <td className="px-6 py-4">
                   <div>
                 
-                    <button
-                     // onClick={() => handleDeleteSession(session)}
-                      className="btn btn-error"
-                    >
-                      Details
-                    </button>
+                    <Link to={`/session-details/${session.session_title}`} className="btn btn-outline btn-primary">Details</Link>
                   </div>
                 </td>
               </tr>
