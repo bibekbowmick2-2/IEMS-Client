@@ -6,11 +6,13 @@ import { Link, Links, Outlet } from "react-router-dom";
 import useAdmin from "../../hooks/useAdmin";
 import { ContextProvider } from "../AuthProviders/AuthProvider";
 import useTutor from "../../hooks/useTutor";
+import useStudent from "../../hooks/useStudent";
 
 
 const SidebarLayout = () => {
    const [isAdmin] = useAdmin();
    const [isTutor] = useTutor();
+   const [isStudent] = useStudent();
    const {user}= useContext(ContextProvider);
   return (
     <div className="flex h-full ">
@@ -85,8 +87,8 @@ const SidebarLayout = () => {
 
 
 
-
-         <Sidebar.Items>
+{
+  isStudent && <Sidebar.Items>
             <Sidebar.ItemGroup>
 
             
@@ -105,6 +107,8 @@ const SidebarLayout = () => {
         
             </Sidebar.ItemGroup>
           </Sidebar.Items>
+}
+         
         
 
 
@@ -127,6 +131,11 @@ const SidebarLayout = () => {
   {
     isTutor && <a className="btn btn-ghost text-5xl font-extrabold italic">Tutor Panel</a>
     
+  }
+
+
+  {
+    isStudent && <a className="btn btn-ghost text-5xl font-extrabold italic">Student Panel of <br/> {user.displayName}</a>
   }
     
   </div>
@@ -162,6 +171,7 @@ const SidebarLayout = () => {
           <div className="mt-10 p-20">
           {isTutor &&  <p className="text-center front-extrabold text-3xl ">The TutorPanel is a dynamic and user-friendly platform designed to streamline the experience for tutors managing their teaching sessions and interacting with students. It empowers tutors by providing essential features like session creation, class scheduling, and student registration tracking, all within an intuitive interface. </p>}
           {isAdmin && <p className="text-center front-extrabold text-3xl ">The AdminPanel is a powerful and centralized platform tailored for administrators to efficiently oversee and manage the operations of an educational system or organization. It offers a wide range of features, including user role management, session approval, fee customization, and comprehensive reporting tools, ensuring smooth coordination between tutors, students, and the system's functionalities. With enhanced security and role-based access control, administrators can maintain oversight while ensuring data integrity and user privacy.</p>}
+          {isStudent && <p  className="text-center front-extrabold text-3xl ">The student panel serves as a centralized platform where students can access study sessions, manage their enrollment, and track their academic progress. It streamlines the learning process by providing an intuitive interface for easy navigation and interaction.</p>}
           </div>
                 <Outlet></Outlet>
             </div>

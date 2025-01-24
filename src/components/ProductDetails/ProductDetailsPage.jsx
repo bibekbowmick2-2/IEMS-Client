@@ -11,12 +11,14 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { useQuery } from "@tanstack/react-query";
 import { toast } from "react-toastify";
+import useStudent from "../../hooks/useStudent";
 
 const ProductDetailsPage = () => {
   
 
   const [isAdmin] = useAdmin();
   const [isTutor] = useTutor();
+  const [isStudent] = useStudent();
   const navigate = useNavigate();
   //const {user,handleComment} = useContext(ContextProvider);
   const { user} = useContext(ContextProvider);
@@ -59,7 +61,11 @@ const ProductDetailsPage = () => {
 
   const handleBook = (bookedsession, navigate) => {
     axios
-      .post(`${import.meta.env.VITE_API_URL}/bookings`, bookedsession)
+      .post(`${import.meta.env.VITE_API_URL}/bookings`,{
+        ...bookedsession,
+        email: user?.email,
+        
+      } )
       .then((res) => {
         if (res.data.insertedId) {
           Swal.fire({
@@ -215,7 +221,7 @@ const ProductDetailsPage = () => {
 
 
               {
-                isAdmin &&  isTutor ?(<li>
+                !isStudent?(<li>
 
                   <button className="btn btn-neutral" disabled >Book Now</button>
 

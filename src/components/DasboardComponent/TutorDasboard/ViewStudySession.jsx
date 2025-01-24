@@ -59,7 +59,7 @@ export default function ViewStudySession() {
           onPageChange={handlePageClick}
           containerClassName={"pagination"}
         
-          disabledClassName={"disabled"}
+          
          
           className="flex gap-3 text-gray-800"
           pageClassName={
@@ -77,6 +77,9 @@ export default function ViewStudySession() {
     breakClassName={
       "flex items-center justify-center px-4 py-2 border rounded-md cursor-default"
     }
+
+
+    disabledClassName={"opacity-50 cursor-not-allowed"}
         />
       </div>
 
