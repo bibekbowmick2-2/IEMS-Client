@@ -81,6 +81,36 @@ const SidebarLayout = () => {
             </Sidebar.ItemGroup>
           </Sidebar.Items>
         }
+
+
+
+
+
+         <Sidebar.Items>
+            <Sidebar.ItemGroup>
+
+            
+              <Link to="bookedsession">
+                <Sidebar.Item icon={HiChartPie}>View booked session</Sidebar.Item>
+              </Link>
+              <Link to="createnote">
+                <Sidebar.Item icon={HiInbox}>Create note</Sidebar.Item>
+              </Link>
+              <Link to="managenotes">
+                <Sidebar.Item icon={HiTable}>Manage Personal Notes </Sidebar.Item>
+              </Link>
+              <Link to="viewtutormaterials">
+                <Sidebar.Item icon={HiTable}>View all tutor materials</Sidebar.Item>
+              </Link>
+        
+            </Sidebar.ItemGroup>
+          </Sidebar.Items>
+        
+
+
+
+
+
           
         </Sidebar>
       </div>

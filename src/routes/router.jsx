@@ -19,6 +19,10 @@ import ViewMaterials from "../components/DasboardComponent/TutorDasboard/ViewMat
 import PrivateTutorRoute from "../components/Routes/PrivateTutorRoute";
 import PrivateRoute from "../components/Routes/PrivateRoute";
 import ProductDetailsPage from "../components/ProductDetails/ProductDetailsPage";
+import ViewBooked from "../components/DasboardComponent/StudentDasboard/ViewBooked";
+import CreateNote from "../components/DasboardComponent/StudentDasboard/CreateNote";
+import ManaeNote from "../components/DasboardComponent/StudentDasboard/ManaeNote";
+import ViewTutorMaterial from "../components/DasboardComponent/StudentDasboard/ViewTutorMaterial";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -113,6 +117,36 @@ const router = createBrowserRouter([
         path: "viewmaterials",
         element:<PrivateTutorRoute><ViewMaterials/></PrivateTutorRoute>,
       },
+
+
+      {
+        path: "bookedsession",
+        element: <PrivateRoute><ViewBooked/></PrivateRoute>,
+      },
+
+
+      {
+        path: "createnote",
+        element: <PrivateRoute><CreateNote/></PrivateRoute>,
+      },
+
+
+      {
+        path: "managenotes",
+        element: <PrivateRoute><ManaeNote/></PrivateRoute>,
+      },
+
+
+      {
+        path: "viewtutormaterials",
+        element: <PrivateRoute><ViewTutorMaterial/></PrivateRoute>,
+      },
+
+
+
+
+
+
 
 
 
