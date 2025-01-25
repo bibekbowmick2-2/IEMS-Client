@@ -26,8 +26,8 @@ import ViewTutorMaterial from "../components/DasboardComponent/StudentDasboard/V
 const router = createBrowserRouter([
   {
     path: "/",
-    errorElement: <ErrorPage />,
     element: <Root />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",

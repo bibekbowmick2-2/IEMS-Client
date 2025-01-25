@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Sidebar } from "flowbite-react";
 // import { HiArrowSmRight, HiChartPie, HiInbox, HiShoppingBag, HiTable, HiUser } from "react-icons/hi";
 import { HiChartPie, HiInbox,HiTable} from "react-icons/hi";
@@ -7,39 +7,52 @@ import useAdmin from "../../hooks/useAdmin";
 import { ContextProvider } from "../AuthProviders/AuthProvider";
 import useTutor from "../../hooks/useTutor";
 import useStudent from "../../hooks/useStudent";
+import { GiHamburgerMenu } from "react-icons/gi";
 
 
 const SidebarLayout = () => {
    const [isAdmin] = useAdmin();
    const [isTutor] = useTutor();
    const [isStudent] = useStudent();
+   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+
+  const toggleSidebar = () => {
+    console.log(isSidebarOpen);
+    setIsSidebarOpen(!isSidebarOpen);
+  };
    const {user}= useContext(ContextProvider);
   return (
-    <div className="flex h-full ">
-      <div className="w-64 min-h-[100vh]   text-white">
+    <div className="flex h-full  ">
+    
+      <div  className={`${
+          // isSidebarOpen ? "w-64" : "w-0"
+          isSidebarOpen ? "block" : "hidden"
+        }  w-64  h-[100vh] bg-gray-800 text-white transition-all duration-1000 absolute lg:static `}>
+      
         <Sidebar aria-label="Sidebar with multi-level dropdown example">
         {
           isAdmin && <Sidebar.Items >
             <Sidebar.ItemGroup>
 
+            {
+        isSidebarOpen && <div className="flex-none">
+            <button
+              className="btn btn-primary "
+              onClick={toggleSidebar}
+              aria-label="Toggle Sidebar"
+            >
+              <GiHamburgerMenu size={24} />
+            </button>
+          </div>
+      }
+
+            
+            
             
               <Link to="dasboard">
                 <Sidebar.Item icon={HiChartPie}>Dashboard</Sidebar.Item>
               </Link>
-              {/* <Sidebar.Collapse icon={HiShoppingBag} label="E-commerce">
-                <Link to="/products">
-                  <Sidebar.Item>Products</Sidebar.Item>
-                </Link>
-                <Link to="/sales">
-                  <Sidebar.Item>Sales</Sidebar.Item>
-                </Link>
-                <Link to="/refunds">
-                  <Sidebar.Item>Refunds</Sidebar.Item>
-                </Link>
-                <Link to="/shipping">
-                  <Sidebar.Item>Shipping</Sidebar.Item>
-                </Link>
-              </Sidebar.Collapse> */}
+             
               <Link to="allusers">
                 <Sidebar.Item icon={HiInbox}>All Users</Sidebar.Item>
               </Link>
@@ -66,6 +79,18 @@ const SidebarLayout = () => {
             isTutor && <Sidebar.Items>
             <Sidebar.ItemGroup>
 
+            {
+        isSidebarOpen && <div className="flex-none">
+            <button
+              className="btn btn-primary "
+              onClick={toggleSidebar}
+              aria-label="Toggle Sidebar"
+            >
+              <GiHamburgerMenu size={24} />
+            </button>
+          </div>
+      }
+
             
               <Link to="createstudysession">
                 <Sidebar.Item icon={HiChartPie}>Create study session</Sidebar.Item>
@@ -90,6 +115,17 @@ const SidebarLayout = () => {
 {
   isStudent && <Sidebar.Items>
             <Sidebar.ItemGroup>
+            {
+        isSidebarOpen && <div className="flex-none">
+            <button
+              className="btn btn-outline btn-ghost"
+              onClick={toggleSidebar}
+              aria-label="Toggle Sidebar"
+            >
+              <GiHamburgerMenu size={24} />
+            </button>
+          </div>
+      }
 
             
               <Link to="bookedsession">
@@ -121,25 +157,44 @@ const SidebarLayout = () => {
 
       {/* Main Content */}
       <div className="flex-1 p-6 bg-indigo-400">
+      
       <div className="navbar ">
-  <div className="flex-1">
+
+      {
+        !isSidebarOpen && <div className="flex-none">
+            <button
+              className="btn btn-outline btn-ghost "
+              onClick={toggleSidebar}
+              aria-label="Toggle Sidebar"
+            >
+              <GiHamburgerMenu size={24} />
+            </button>
+          </div>
+      }
+
+      
+      
+      
+    <div className="flex gap-0 lg:gap-72"> 
+
+  <div >
   {
-    isAdmin && <a className="btn btn-ghost text-5xl font-extrabold italic">Admin Panel</a>
+    isAdmin && <a className="btn btn-ghost text-1xl lg:text-5xl font-extrabold italic">Admin Panel</a>
 
   }
 
   {
-    isTutor && <a className="btn btn-ghost text-5xl font-extrabold italic">Tutor Panel</a>
+    isTutor && <a className="btn btn-ghost text-1xl lg:text-5xl font-extrabold italic">Tutor Panel</a>
     
   }
 
 
   {
-    isStudent && <a className="btn btn-ghost text-5xl font-extrabold italic">Student Panel of <br/> {user.displayName}</a>
+    isStudent && <a className="btn btn-ghost text-1xl lg:text-5xl font-extrabold italic">Student Panel of <br/> {user.displayName}</a>
   }
     
   </div>
-  <div className="flex-none gap-2">
+  <div className="flex">
   <Link to= "/" className="btn btn-accent">Home </Link>
     <div className="form-control">
       <input type="text" placeholder="Search" className="input input-bordered w-24 md:w-auto" />
@@ -166,12 +221,16 @@ const SidebarLayout = () => {
       </ul>
     </div>
   </div>
+  </div> 
+
+
+
 </div>
 
-          <div className="mt-10 p-20">
-          {isTutor &&  <p className="text-center front-extrabold text-3xl ">The TutorPanel is a dynamic and user-friendly platform designed to streamline the experience for tutors managing their teaching sessions and interacting with students. It empowers tutors by providing essential features like session creation, class scheduling, and student registration tracking, all within an intuitive interface. </p>}
-          {isAdmin && <p className="text-center front-extrabold text-3xl ">The AdminPanel is a powerful and centralized platform tailored for administrators to efficiently oversee and manage the operations of an educational system or organization. It offers a wide range of features, including user role management, session approval, fee customization, and comprehensive reporting tools, ensuring smooth coordination between tutors, students, and the system's functionalities. With enhanced security and role-based access control, administrators can maintain oversight while ensuring data integrity and user privacy.</p>}
-          {isStudent && <p  className="text-center front-extrabold text-3xl ">The student panel serves as a centralized platform where students can access study sessions, manage their enrollment, and track their academic progress. It streamlines the learning process by providing an intuitive interface for easy navigation and interaction.</p>}
+          <div className="mt-10 p-20 ">
+          {isTutor &&  <p className="text-center front-extrabold text-1xl lg:text-3xl ">The TutorPanel is a dynamic and user-friendly platform designed to streamline the experience for tutors managing their teaching sessions and interacting with students. It empowers tutors by providing essential features like session creation, class scheduling, and student registration tracking, all within an intuitive interface. </p>}
+          {isAdmin && <p className="text-center front-extrabold text-1xl lg:text-3xl  ">The AdminPanel is a powerful and centralized platform tailored for administrators to efficiently oversee and manage the operations of an educational system or organization. It offers a wide range of features, including user role management, session approval, fee customization, and comprehensive reporting tools, ensuring smooth coordination between tutors, students, and the system's functionalities. With enhanced security and role-based access control, administrators can maintain oversight while ensuring data integrity and user privacy.</p>}
+          {isStudent && <p  className="text-center front-extrabold text-1xl lg:text-3xl ">The student panel serves as a centralized platform where students can access study sessions, manage their enrollment, and track their academic progress. It streamlines the learning process by providing an intuitive interface for easy navigation and interaction.</p>}
           </div>
                 <Outlet></Outlet>
             </div>

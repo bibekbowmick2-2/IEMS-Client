@@ -116,6 +116,63 @@ export default function AllStudySession() {
     }
   };
 
+
+
+  const handleUpdate = (session) => {
+    Swal.fire({
+      title: "Update Session",
+      html: `
+        <input type="text" id="title" class="swal2-input" placeholder="Session Title" value="${session.session_title}" />
+        <textarea id="description" class="swal2-textarea" placeholder="SessionDescription">${session.description}</textarea>
+        <input type="date" id="start_date" class="swal2-input" placeholder="Registration Start Date" value="${session.start_date}" />
+        <input type="date" id="end_date" class="swal2-input" placeholder="Registration End Date" value="${session.end_date}" />
+        <input type="number" id="duration" class="swal2-input" placeholder="Session Duration" value="${session.duration}" />
+        <input type="number" id="fee" class="swal2-input" placeholder="Session Fee" value="${session.fee}" />
+        <input type="date" id="class_start_date" class="swal2-input" placeholder="Class Start Date" value="${session.class_start_date}" />
+        <input type="date" id="class_end_date" class="swal2-input" placeholder="Class End Date" value="${session?.class_end_date}" />
+        
+      `,
+      confirmButtonText: "Update",
+      showCancelButton: true,
+      preConfirm: () => {
+        const title = Swal.getPopup().querySelector("#title").value;
+        const description =Swal.getPopup().querySelector("#description").value;
+        const start_date = Swal.getPopup().querySelector("#start_date").value;
+        const end_date = Swal.getPopup().querySelector("#end_date").value;
+        const duration = Swal.getPopup().querySelector("#duration").value;
+        const fee = Swal.getPopup().querySelector("#fee").value;
+        const class_start_date = Swal.getPopup().querySelector("#class_start_date").value;
+        const class_end_date = Swal.getPopup().querySelector("#class_end_date").value;
+
+        // if (!title || !description || !start_date || !end_date || !duration || !fee || !class_start_date || !class_end_date) {
+        //   Swal.showValidationMessage( `Please enter input field` );
+        // }
+
+        
+        return { title, description, start_date, end_date, duration, fee, class_start_date, class_end_date };
+      },
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const  {title, description, start_date, end_date, duration, fee, class_start_date, class_end_date }  = result.value;
+
+        
+        axiosSecure
+          .patch(`/manage-session/${session._id}`, {title, description, start_date, end_date, duration, fee, class_start_date, class_end_date })
+          .then((response) => {
+            if (response.data.modifiedCount > 0) {
+              Swal.fire("Success", "Session updated successfully!", "success");
+              refetch(); 
+            }
+          })
+          .catch(() => {
+            Swal.fire("Error", "Failed to update session. Try again later.", "error");
+          });
+      }
+    });
+  };
+
+
+
   return (
     <div>
       <p className="mb-7 text-5xl font-extrabold text-center">All Study Sessions</p>
@@ -203,7 +260,7 @@ export default function AllStudySession() {
                 </td>
                 <td className="px-6 py-4">
                   <div>
-                    <button className="btn btn-success mr-4 mt-3">Edit</button>
+                    <button onClick={() => handleUpdate(session)} className="btn btn-success mr-4 mt-3">Edit</button>
                     <button
                       onClick={() => handleDeleteSession(session)}
                       className="btn btn-error"
