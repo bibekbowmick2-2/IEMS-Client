@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import './Login.css'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ContextProvider } from './AuthProviders/AuthProvider';
 export default function Login() {
   const navigate = useNavigate();
@@ -22,16 +22,21 @@ export default function Login() {
         <input type="password" name="password" required/>
         <label>Enter your password</label>
       </div>
-      {/* <div class="forget">
-        <label for="remember">
-          <input type="checkbox" id="remember"/>
-          <p>Remember me</p>
-        </label>
-        <a href="#">Forgot password?</a>
-      </div> */}
-      <button className='text-gray-50' type="submit">Log In</button>
+      
+      {loading ? (
+                <div className="flex items-center justify-center ">
+                  <span className="loading loading-spinner text-error loading-lg"></span>
+                </div>
+              ) : (
+                <>
+                <div className="form-control mt-6">
+                <button type="submit" className="btn btn-primary">Login</button>
+              </div>
+                </> // or null
+              )}
+
       <div class="register">
-        <p>Don't have an account? <a href="#">Register</a></p>
+        <p>Don't have an account? <Link to="/register">Register</Link></p>
       </div>
     </form>
   </div>

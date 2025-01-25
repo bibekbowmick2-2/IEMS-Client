@@ -90,7 +90,7 @@ const AuthProvider = ({ children }) => {
       
 
 
-      // setLoading(false);
+       setLoading(false);
       toast.success("User created successfully");
 
       console.log("Signed up User", user);
@@ -100,9 +100,6 @@ const AuthProvider = ({ children }) => {
       const errorMessage = error.message;
        toast.error(errorMessage);
       console.error("Error during sign-up", errorCode, errorMessage);
-    }finally
-    {
-      setLoading(false);
     }
 
   };
@@ -120,11 +117,13 @@ const AuthProvider = ({ children }) => {
         // Signed in
         const user = userCredential.user;
        
-       setLoading(false);
+      
         console.log("Signed in  User", user);
         toast.success("User logged in successfully");
         navigate("/");
         // ...
+      }).finally(() => {
+        setLoading(false);
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -223,6 +222,7 @@ const AuthProvider = ({ children }) => {
   
       if (currentUser) {
         setUser(currentUser); // Update user state
+        setLoading(false);
         try {
           // Save user info to DB and get JWT
           await axios.post(
@@ -244,7 +244,7 @@ const AuthProvider = ({ children }) => {
         }
       }
   
-      setLoading(false); // Stop loading
+      // setLoading(false); 
     });
   
     return () => unsubscribe();

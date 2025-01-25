@@ -4,6 +4,7 @@ import Banner from './Banner'
 import Service from './Service'
 import Card from './Card'
 import GoogleMap from './GoogleMap'
+import Tutorlist from './Tutorlist'
 
 
 export default function Home() {
@@ -14,6 +15,7 @@ export default function Home() {
         <Service/>
         <Card/>
         <GoogleMap/>
+        <Tutorlist/>
      
         </div>
   )

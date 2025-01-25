@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { ContextProvider } from './AuthProviders/AuthProvider';
 export default function Login() {
   const navigate = useNavigate();
-  const { handleSubmit,handleGoogle,handleGithub} = useContext(ContextProvider);
+  const { handleSubmit,handleGoogle,handleGithub,loading} = useContext(ContextProvider);
 
   const handleformSubmit = (e) => {
     
@@ -46,7 +46,20 @@ export default function Login() {
             </select>
           
       
-      <button className='mt-4 p-1.5 text-gray-50' type="submit">Register</button>
+            {loading ? (
+                <div className="flex items-center justify-center ">
+                  <span className="loading loading-spinner text-error loading-lg"></span>
+                </div>
+              ) : (
+                <>
+                <div className="form-control mt-6">
+                <button type="submit" className="btn btn-primary">Register</button>
+              </div>
+                </> // or null
+              )}
+
+
+              
       <div class="register">
         <button  onClick={() => handleGoogle(navigate)} className='btn btn-success rounded-md'>Login with Google</button>
       
