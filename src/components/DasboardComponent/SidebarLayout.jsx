@@ -104,6 +104,10 @@ const SidebarLayout = () => {
               <Link to="viewmaterials">
                 <Sidebar.Item icon={HiTable}>View all materials</Sidebar.Item>
               </Link>
+
+              <Link to="rejectedfeedback">
+                <Sidebar.Item icon={HiTable}>Rejected Sessions Feedback</Sidebar.Item>
+              </Link>
         
             </Sidebar.ItemGroup>
           </Sidebar.Items>

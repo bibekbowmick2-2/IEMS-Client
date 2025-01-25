@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import {
   Card,
@@ -10,9 +10,11 @@ import {
 } from "@material-tailwind/react";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import ReactPaginate from "react-paginate";
+import { ContextProvider } from "../../AuthProviders/AuthProvider";
 
 
 export default function ViewStudySession() {
+  const { user } = useContext(ContextProvider);
   const axiosSecure = useAxiosSecure();
   const { data: users = [], refetch } = useQuery({
     queryKey: ["users"],
@@ -23,6 +25,9 @@ export default function ViewStudySession() {
   });
 
 
+  const filteredUsers = users.filter((f) => f.tutorname === user?.displayName && f.email === user?.email);
+
+
   const [currentPage, setCurrentPage] = useState(0);
   const itemsPerPage = 3; 
 
@@ -31,7 +36,7 @@ export default function ViewStudySession() {
   const endIndex = startIndex + itemsPerPage;
 
   
-  const currentItems = users.slice(startIndex, endIndex);
+  const currentItems = filteredUsers.slice(startIndex, endIndex);
 
   
   const pageCount = Math.ceil(users.length / itemsPerPage);
@@ -173,6 +178,10 @@ export default function ViewStudySession() {
           </div>
         ))}
       </div>
+
+
+
+      
 
       
     </div>

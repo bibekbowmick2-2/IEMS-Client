@@ -57,6 +57,58 @@ export default function AllStudySession() {
     });
   };
 
+
+
+
+  const  handleExtra= (session) => {
+    const { email, tutorname,session_title } = session;
+    Swal.fire({
+      position: "center",
+      title: "Submit Your Feedback",
+      html: `
+        <input type="text" id="note-title" class="swal2-input" placeholder="Rejection Reason" />
+        <textarea id="note-description" class="swal2-textarea" placeholder="Feedback"></textarea>
+      `,
+      confirmButtonText: "Submit",
+      showCancelButton: true,
+      preConfirm: () => {
+        const title = Swal.getPopup().querySelector("#note-title").value;
+        const description =
+          Swal.getPopup().querySelector("#note-description").value;
+
+        if (!title || !description) {
+          Swal.showValidationMessage(`Please enter both title and description`);
+        }
+        return { title, description };
+      },
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const { title, description } = result.value;
+        
+
+        
+        axiosSecure
+          .post(`/feedback`, { title, description,tutorname,email,session_title })
+          .then((res) => {
+            if(res.data.insertedId)
+            {
+              refetch();
+              Swal.fire({
+                  position: "center",
+                  icon: "success",
+                  title: `${session.session_title}Session Rejected.Thank you for your valueable feedback!`,
+                  showConfirmButton: false,
+                  timer: 1500,
+              });
+            }
+          })
+          .catch(() => {
+            Swal.fire("Error", "Failed to reject session. Try again later.", "error");
+          });
+      }
+    });
+  };
+
   const handleStatusChange = async (session, status) => {
     try {
       const statusUpdateRes = await axiosSecure.patch(
@@ -67,13 +119,8 @@ export default function AllStudySession() {
         refetch();
 
         if (status === "rejected") {
-          Swal.fire({
-            position: "center",
-            icon: "success",
-            title: `${session.session_title}  Session Rejected`,
-            showConfirmButton: false,
-            timer: 1500,
-          });
+          handleExtra(session);
+          
           return;
         }
 
@@ -173,6 +220,13 @@ export default function AllStudySession() {
 
 
 
+
+ 
+
+
+
+
+
   return (
     <div>
       <p className="mb-7 text-5xl font-extrabold text-center">All Study Sessions</p>
@@ -255,7 +309,7 @@ export default function AllStudySession() {
                   >
                     <option value="pending">Pending</option>
                     <option value="approved">Approved</option>
-                    <option value="rejected">Rejected</option>
+                    <option value="rejected">Rejected </option>
                   </select>
                 </td>
                 <td className="px-6 py-4">

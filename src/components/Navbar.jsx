@@ -39,19 +39,19 @@ export default function Navbar() {
         <ul
           tabIndex={0}
           className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-          <li><a>Home</a></li>
+          <li className='font-extrabold'><a>Home</a></li>
           {
             !user&&<>
-              <Link to='/login'><li><a>Login</a></li></Link>
+              <Link to='/login'><li className='font-extrabold'><a>Login</a></li></Link>
       
-          <Link to='/register'><li><a>Register</a></li></Link>
+          <Link to='/register'><li className='font-extrabold'><a>Register</a></li></Link>
             </>
           }
 
 
           {
             user&&<> 
-            <Link to='/dasboard'><li><a>Dashboard</a></li></Link>
+            <Link to='/dasboard'><li className='font-extrabold'><a>Dashboard</a></li></Link>
             </>
           }
           
@@ -62,20 +62,20 @@ export default function Navbar() {
     </div>
     <div className="navbar-center hidden lg:flex">
       <ul className="menu menu-horizontal px-1">
-      <Link to='/'><li><a>Home</a></li></Link>
+      <Link to='/'><li className='font-extrabold'><a>Home</a></li></Link>
         
        {
             !user&&<>
-              <Link to='/login'><li><a>Login</a></li></Link>
+              <Link to='/login'><li className='font-extrabold'><a>Login</a></li></Link>
       
-          <Link to='/register'><li><a>Register</a></li></Link>
+          <Link to='/register'><li className='font-extrabold'><a>Register</a></li></Link>
             </>
           }
 
 
           {
             user&&<> 
-            <Link to='/sidebar'><li><a>Dashboard</a></li></Link>
+            <Link to='/sidebar'><li className='font-extrabold'><a>Dashboard</a></li></Link>
             </>
           }
   

@@ -264,6 +264,7 @@ const AuthProvider = ({ children }) => {
         user,
         passwordError,
         handleGithub,
+        setLoading
         
       
       }}

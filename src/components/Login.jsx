@@ -1,11 +1,15 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import './Login.css'
 import { Link, useNavigate } from 'react-router-dom';
 import { ContextProvider } from './AuthProviders/AuthProvider';
 export default function Login() {
   const navigate = useNavigate();
-  const {handleSubmit2, loading} = useContext(ContextProvider);
+  const {handleSubmit2, loading,setLoading} = useContext(ContextProvider);
 
+
+  useEffect(() => {
+    setLoading(false);
+  },[])
   const handleformSubmit = (e) => {
     handleSubmit2(e, navigate); // Pass navigate to the context's method
   };

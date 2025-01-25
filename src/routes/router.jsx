@@ -18,11 +18,13 @@ import UploadMaterials from "../components/DasboardComponent/TutorDasboard/Uploa
 import ViewMaterials from "../components/DasboardComponent/TutorDasboard/ViewMaterials";
 import PrivateTutorRoute from "../components/Routes/PrivateTutorRoute";
 import PrivateRoute from "../components/Routes/PrivateRoute";
+import PrivateeRoute from "../components/Routes/PrivateeRoute";
 import ProductDetailsPage from "../components/ProductDetails/ProductDetailsPage";
 import ViewBooked from "../components/DasboardComponent/StudentDasboard/ViewBooked";
 import CreateNote from "../components/DasboardComponent/StudentDasboard/CreateNote";
 import ManaeNote from "../components/DasboardComponent/StudentDasboard/ManaeNote";
 import ViewTutorMaterial from "../components/DasboardComponent/StudentDasboard/ViewTutorMaterial";
+import RejectedSessionsFeedback from "../components/DasboardComponent/TutorDasboard/RejectedSessionsFeedback";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -50,7 +52,7 @@ const router = createBrowserRouter([
 
       {
         path: "/session-details/:session_title",
-        element: <PrivateRoute><ProductDetailsPage/></PrivateRoute>,
+        element: <PrivateeRoute><ProductDetailsPage/></PrivateeRoute>,
         loader: () => fetch(`${import.meta.env.VITE_API_URL}/sessions`),
       }
 
@@ -111,6 +113,13 @@ const router = createBrowserRouter([
       {
         path: "uploadmaterials",
         element: <PrivateTutorRoute><UploadMaterials/></PrivateTutorRoute>,
+      },
+
+      
+
+      {
+        path: "rejectedfeedback",
+        element: <PrivateTutorRoute><RejectedSessionsFeedback/></PrivateTutorRoute>,
       },
       
       {
