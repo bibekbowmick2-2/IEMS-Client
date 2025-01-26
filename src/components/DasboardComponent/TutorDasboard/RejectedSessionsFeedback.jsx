@@ -17,10 +17,12 @@ export default function RejectedSessionsFeedback() {
 
 
   const filterFeedback = feedbacks.filter((f) => f.tutorname === user?.displayName && f.email === user?.email);
+  
 
   return (
     <div>
       <p className="mb-7 text-5xl font-extrabold text-center">Rejection Feedbacks</p>
+      
 
       <div className="grid grid-cols-1 md:grid-cols-2  lg:grid-cols-3 gap-4">
         {filterFeedback.map((note) => (

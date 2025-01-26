@@ -14,6 +14,7 @@ const SidebarLayout = () => {
    const [isAdmin] = useAdmin();
    const [isTutor] = useTutor();
    const [isStudent] = useStudent();
+
    const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   const toggleSidebar = () => {
@@ -21,15 +22,21 @@ const SidebarLayout = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
    const {user}= useContext(ContextProvider);
+
+
+   
+
   return (
     <div className="flex h-full  ">
     
       <div  className={`${
           // isSidebarOpen ? "w-64" : "w-0"
           isSidebarOpen ? "block" : "hidden"
-        }  w-64  h-[100vh] bg-gray-800 text-white transition-all duration-1000 absolute lg:static `}>
+        }  w-64  h-[100vh] bg-teal-700 text-white transition-all duration-1000 absolute lg:static  `}>
       
-        <Sidebar aria-label="Sidebar with multi-level dropdown example">
+        <Sidebar style={{
+          opacity: 0.7
+        }} aria-label="Sidebar with multi-level dropdown example">
         {
           isAdmin && <Sidebar.Items >
             <Sidebar.ItemGroup>
@@ -198,11 +205,13 @@ const SidebarLayout = () => {
   }
     
   </div>
-  <div className="flex">
+  <div className="flex flex-row">
   <Link to= "/" className="btn btn-accent">Home </Link>
-    <div className="form-control">
-      <input type="text" placeholder="Search" className="input input-bordered w-24 md:w-auto" />
-    </div>
+    
+
+  
+
+
     <div className="dropdown dropdown-end">
       <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
         <div className="w-10 rounded-full">

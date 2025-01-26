@@ -4,8 +4,12 @@ import { useQuery } from "@tanstack/react-query";
 import ReactPaginate from "react-paginate";
 import Swal from "sweetalert2";
 
+
 export default function AllStudySession() {
   const axiosSecure = useAxiosSecure();
+
+ 
+
   const { data: sessions = [], refetch } = useQuery({
     queryKey: ["sessions"],
     queryFn: async () => {
@@ -16,6 +20,9 @@ export default function AllStudySession() {
 
   const [currentPage, setCurrentPage] = useState(0);
   const itemsPerPage = 4;
+
+
+
 
   const filteredRejectedSessions = sessions.filter(
     (session) => session.status !== "rejected"
@@ -221,15 +228,15 @@ export default function AllStudySession() {
 
 
 
- 
-
-
+  
 
 
 
   return (
     <div>
       <p className="mb-7 text-5xl font-extrabold text-center">All Study Sessions</p>
+
+
 
 
 
