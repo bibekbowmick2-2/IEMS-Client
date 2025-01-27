@@ -1,10 +1,13 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import './Login.css'
 import { useNavigate } from 'react-router-dom';
 import { ContextProvider } from './AuthProviders/AuthProvider';
 export default function Login() {
   const navigate = useNavigate();
-  const { handleSubmit,handleGoogle,handleGithub,loading} = useContext(ContextProvider);
+  const { handleSubmit,handleGoogle,handleGithub,loading,setLoading} = useContext(ContextProvider);
+  useEffect(() => {
+    setLoading(false);
+  },[])
 
   const handleformSubmit = (e) => {
     

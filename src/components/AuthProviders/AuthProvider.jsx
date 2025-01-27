@@ -100,7 +100,10 @@ const AuthProvider = ({ children }) => {
       const errorMessage = error.message;
        toast.error(errorMessage);
       console.error("Error during sign-up", errorCode, errorMessage);
+    }finally {
+      setLoading(false);
     }
+
 
   };
 
