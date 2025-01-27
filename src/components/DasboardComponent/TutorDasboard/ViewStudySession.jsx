@@ -11,6 +11,7 @@ import {
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import ReactPaginate from "react-paginate";
 import { ContextProvider } from "../../AuthProviders/AuthProvider";
+import Swal from "sweetalert2";
 
 
 export default function ViewStudySession() {
@@ -47,6 +48,27 @@ export default function ViewStudySession() {
     setCurrentPage(event.selected);
 
   };
+
+
+
+  const handleSendRequest = (session) => {
+    axiosSecure
+      .patch(`/request/${session._id}`)
+      .then((res) => {
+        if (res.data.modifiedCount > 0) {
+          refetch();
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: `Request sent to Admin!`,
+            showConfirmButton: false,
+            timer: 1700,
+          });
+        }
+      });
+  };
+
+
 
   return (
     <div>
@@ -161,6 +183,9 @@ export default function ViewStudySession() {
                       {user.status.toUpperCase()}
                     </Typography>
                   </li>
+
+                 {user.status === "rejected" && <li>
+                 <button className="btn" onClick={() => handleSendRequest(user)} >Send Request to admin</button></li>} 
                 </ul>
               </CardBody>
               <CardFooter className="mt-12 p-0">
