@@ -103,7 +103,7 @@ export default function AllStudySession() {
               Swal.fire({
                   position: "center",
                   icon: "success",
-                  title: `${session.session_title}Session Rejected.Thank you for your valueable feedback!`,
+                  title: `${session.session_title}  Session Rejected.Thank you for your valueable feedback!`,
                   showConfirmButton: false,
                   timer: 1500,
               });
