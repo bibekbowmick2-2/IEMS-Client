@@ -1,7 +1,7 @@
 
 
 
-# Project Name: IEMS: A Study Management Platform
+# Project Name: IEMS: Collaborative Study Platform
 # Project Category: category_022
 # Live Site Link: 
 
