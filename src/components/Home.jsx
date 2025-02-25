@@ -1,5 +1,4 @@
-import React from 'react'
-import Navbar from './Navbar'
+
 import Banner from './Banner'
 import Service from './Service'
 import Card from './Card'
@@ -9,9 +8,9 @@ import Tutorlist from './Tutorlist'
 
 export default function Home() {
   return (
-    <div className='mx-auto max-w-[1440px] max-h-full '>
+    <div className='mx-auto max-w-full lg:max-w-7xl'>
        
-        <Banner/>
+       <div className="max-w-full lg:max-w-8xl"><Banner /></div> 
         <Service/>
         <Card/>
         <GoogleMap/>

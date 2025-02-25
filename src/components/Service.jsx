@@ -7,14 +7,17 @@ import im5 from "../assets/discover.png";
 import im6 from "../assets/payoneer.png";
 import im7 from "../assets/paypal.png";
 import im8 from "../assets/paysafe.png";
+import card1 from "../assets/card-1.jpg"
+import card2 from "../assets/card-2.jpg"
+import scholar from "../assets/scholar.png"
 export default function Service() {
   return (
-    <div className="mt-9">
-      <p className="text-4xl lg:text-6xl font-extrabold text-center">
+    <div className=" bg-[#F2DAEE] outfit-normal rounded-2xl text-gray-700 p-5 md:p-[100px] lg:p-[100px]">
+      <p className="text-4xl lg:text-6xl  font-extrabold text-center">
         We strive to provide a pleasant & appropriate service
-      </p>
-      <div className="grid grid-cols-1  lg:grid-cols-2 mt-16 justify-center">
-        <div>
+      </p><br /><br />
+      <div className="grid grid-cols-1  lg:grid-cols-2 gap-5">
+        <div className="w-full border-2 border-red-50"> 
           <h1 className="text-2xl text-justify font-extrabold">
             Choose one of the prices we provide and you don't need a credit card
             for payment. You can pay by any payment method you like.Its upto
@@ -60,39 +63,22 @@ export default function Service() {
           </div>
         </div>
 
-        <div className="mx-auto lg:mx-28">
-          <div className="grid grid-cols-1  md:gap-x-3 lg:grid-rows-4 gap-y-3">
-            <div className="card bg-gray-400 w-72 md:w-80 lg:w-96 shadow-xl max-h-48">
-              <div className="card-body">
-                <h2 className="card-title">Card title!</h2>
-                <p className="text-justify">If a dog chews shoes whose shoes does he choose?</p>
-               
+        <div className="w-full">
+          <div className="grid grid-cols-1  md:gap-x-3 lg:grid-cols-2 lg:grid-rows-4 gap-y-3">
+              <div className="md:row-span-2 lg:row-span-2 border-2 border-white ">
+                <img className="w-full rounded-xl" src={card1} alt="" />
               </div>
-            </div>
-
-            <div className="card bg-gray-400 w-72 md:w-80 lg:w-96 shadow-xl max-h-48">
-              <div className="card-body">
-                <h2 className="card-title">Card title!</h2>
-                <p className="text-justify">If a dog chews shoes whose shoes does he choose?</p>
-                
+              <div className=" bg-white rounded-full flex justify-center ">
+              <div className="w-[70px] border-2 border-white"><img className="w-full rounded-xl" src={scholar} alt="" /></div>
+              <h2 className="card-title  text-gray-800 ">25 Years+ of Experience</h2>
               </div>
-            </div>
-
-            <div className="card bg-gray-400 w-72 md:w-80 lg:w-96 shadow-xl max-h-48">
-              <div className="card-body">
-                <h2 className="card-title">Card title!</h2>
-                <p className="text-justify">If a dog chews shoes whose shoes does he choose?</p>
-                
+              <div className="md:row-span-2 lg:row-span-2 border-2 border-white ">
+                <img className="w-full h-full rounded-xl" src={card2} alt="" />
               </div>
-            </div>
-
-            <div className="card bg-gray-400 w-72 md:w-80 lg:w-96 shadow-xl max-h-48">
-              <div className="card-body">
-                <h2 className="card-title">Card title!</h2>
-                <p className="text-justify">If a dog chews shoes whose shoes does he choose?</p>
-                
+              <div className=" bg-white rounded-xl p-5 ">
+              <h2 className="font-bold text-2xl md:text-6xl lg:text-6xl text-gray-800">45+</h2>
+              <p className="text-blue-600">Award Winning</p>
               </div>
-            </div>
           </div>
         </div>
       </div>

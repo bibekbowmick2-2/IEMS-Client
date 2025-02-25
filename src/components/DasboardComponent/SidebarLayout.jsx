@@ -32,7 +32,7 @@ const SidebarLayout = () => {
       <div  className={`${
           // isSidebarOpen ? "w-64" : "w-0"
           isSidebarOpen ? "block" : "hidden"
-        }  w-64  h-[100vh] bg-teal-700 text-white transition-all duration-1000 absolute lg:static  `}>
+        }  w-64  h-[100vh] bg-blue-900 text-white transition-all duration-1000 absolute lg:static  `}>
       
         <Sidebar style={{
           opacity: 0.7

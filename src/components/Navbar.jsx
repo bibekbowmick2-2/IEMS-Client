@@ -19,7 +19,7 @@ export default function Navbar() {
       });
   };
   return (
-    <div className="navbar ">
+    <div className="bg-[#c7cfff61] z-10 navbar fixed top-0 text-gray-800 lg:left-[8%] max-w-full lg:max-w-7xl">
     <div className="navbar-start">
       <div className="dropdown">
         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -39,19 +39,19 @@ export default function Navbar() {
         <ul
           tabIndex={0}
           className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-          <li className='font-extrabold'><a>Home</a></li>
+          <li className='font-bold text-xl outfit-normal'><a>Home</a></li>
           {
             !user&&<>
-              <Link to='/login'><li className='font-extrabold'><a>Login</a></li></Link>
+              <Link to='/login'><li className='font-bold text-xl outfit-normal'><a>Login</a></li></Link>
       
-          <Link to='/register'><li className='font-extrabold'><a>Register</a></li></Link>
+          <Link to='/register'><li className='font-bold text-xl outfit-normal'><a>Register</a></li></Link>
             </>
           }
 
 
           {
             user&&<> 
-            <Link to='/dasboard'><li className='font-extrabold'><a>Dashboard</a></li></Link>
+            <Link to='/dasboard'><li className='font-bold text-xl outfit-normal'><a>Dashboard</a></li></Link>
             </>
           }
           
@@ -62,20 +62,20 @@ export default function Navbar() {
     </div>
     <div className="navbar-center hidden lg:flex">
       <ul className="menu menu-horizontal px-1">
-      <Link to='/'><li className='font-extrabold'><a>Home</a></li></Link>
+      <Link to='/'><li className='font-bold text-xl outfit-normal'><a>Home</a></li></Link>
         
        {
             !user&&<>
-              <Link to='/login'><li className='font-extrabold'><a>Login</a></li></Link>
+              <Link to='/login'><li className='font-bold text-xl outfit-normal'><a>Login</a></li></Link>
       
-          <Link to='/register'><li className='font-extrabold'><a>Register</a></li></Link>
+          <Link to='/register'><li className='font-bold text-xl outfit-normal'><a>Register</a></li></Link>
             </>
           }
 
 
           {
             user&&<> 
-            <Link to='/sidebar'><li className='font-extrabold'><a>Dashboard</a></li></Link>
+            <Link to='/sidebar'><li className='font-bold text-xl outfit-normal'><a>Dashboard</a></li></Link>
             </>
           }
   
@@ -96,8 +96,8 @@ export default function Navbar() {
               place="left-start"
               variant="info"
               content=<>
-                <div class="avatar z-10">
-                  <div class="w-24 rounded-full">
+                <div className="avatar z-10">
+                  <div className="w-24 rounded-full">
                     <img src={user?.photoURL.replace(/"/g, "")} />
                   </div>
                 </div>
