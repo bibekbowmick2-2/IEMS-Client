@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <div className='mx-auto max-w-full lg:max-w-7xl'>
        
-       <div className="max-w-full lg:max-w-8xl"><Banner /></div> 
+       <div className=""><Banner /></div> 
         <Service/>
         <Card/>
         <GoogleMap/>
