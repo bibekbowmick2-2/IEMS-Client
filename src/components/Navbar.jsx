@@ -19,7 +19,7 @@ export default function Navbar() {
       });
   };
   return (
-    <div className="bg-[#FFFFFF] z-10 navbar fixed top-0 text-gray-800 outfit-normal left-[0%]  lg:left-[7%] ">
+    <div className="bg-[#FFFFFF] z-10 navbar fixed top-0 text-gray-800 outfit-normal  ">
     <div className="navbar-start">
       <div className="dropdown">
         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">

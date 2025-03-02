@@ -6,8 +6,8 @@ import { FaInstagramSquare } from "react-icons/fa";
 export default function Footer() {
   return (
     <div className='bg-[#0C1427]'>
-      <footer className="footer outfit-normal grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6  text-gray-400 text-[16px] py-[100px]  mx-auto max-w-full lg:max-w-7xl p-5 ">
-        <div className="col-span-2 space-y-4">
+      <div className=" outfit-normal grid grid-cols-1 md:grid-cols-1 lg:grid-cols-6  text-gray-400 text-[16px] py-[100px]  mx-auto max-w-full lg:max-w-7xl p-5 ">
+        <div className="lg:col-span-2 space-y-4 mb-5">
           <h1 className="text-2xl md:text-4xl lg:text-4xl font-bold">Earlnapp</h1>
           <p>Earlapp is an online learning platform that enables teachers and students to connect and conduct classes remotely</p>
           <div className="flex gap-4">
@@ -18,27 +18,27 @@ export default function Footer() {
           </div>
           
         </div>
-        <div className="space-y-4">
+        <div className="space-y-4 mb-5">
           <h6 className="text-lg md:text-2xl lg:text-2xl font-bold">Services</h6>
-          <a className="link link-hover">Branding</a>
-          <a className="link link-hover">Design</a>
-          <a className="link link-hover">Marketing</a>
-          <a className="link link-hover">Advertisement</a>
+          <p className="link link-hover">Branding</p>
+          <p className="link link-hover">Design</p>
+          <p className="link link-hover">Marketing</p>
+          <p className="link link-hover">Advertisement</p>
         </div>
-        <div  className="space-y-4">
+        <div  className="space-y-4 mb-5">
           <h6 className="text-lg md:text-2xl lg:text-2xl font-bold">Legal</h6>
-          <a className="link link-hover">Terms of use</a>
-          <a className="link link-hover">Privacy policy</a>
-          <a className="link link-hover">Cookie policy</a>
+          <p className="link link-hover">Terms of use</p>
+          <p className="link link-hover">Privacy policy</p>
+          <p className="link link-hover">Cookie policy</p>
         </div>
 
-        <div className="col-span-2 space-y-4">
+        <div className="lg:col-span-2 space-y-4 mb-5">
           <h6 className="text-lg md:text-2xl lg:text-2xl font-bold">News Letter</h6>
           <p className="link link-hover">Join over 68,000 people getting our emails Lorem ipsum dolor sit amet consectet</p>
           <input className="p-3 w-full rounded-xl" placeholder="Enter your Email" type="text" name="" id="" />
           <button className="btn w-full bg-[#FF7E84] text-white"> Subscribe Now</button>
         </div>
-      </footer>
+      </div>
       <footer className="footer bg-[#0C1427] text-gray-400 border-base-300 border-t px-10 py-4 ">
         <aside className="grid-flow-col items-center mx-auto">
           <svg
