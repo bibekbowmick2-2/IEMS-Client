@@ -1,4 +1,4 @@
-import React from "react";
+
 import im1 from "../assets/amazon.png";
 import im2 from "../assets/amex.png";
 import im3 from "../assets/bitpay.png";

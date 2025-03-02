@@ -26,7 +26,7 @@ export default function ViewSessions() {
   );
 
   return (
-    <div className="mt-10">
+    <div className="mt-10 bg-green-100 py-[100px] md::px-[70px] lg:px-[100px]">
       <Slide direction="right">
         <h1 className="text-2xl md:text-4xl lg:text-4xl font-bold text-black text-center">
           Each <span className="text-[#FF7E84]">session course</span> you desire to join from our community
@@ -34,7 +34,7 @@ export default function ViewSessions() {
       </Slide>
 
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mt-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mt-10 p-5">
         {filtered_sessions.map((session) => (
           <div key={session.session_title}>
             <Fade
@@ -42,7 +42,7 @@ export default function ViewSessions() {
               duration={1000} // Animation duration
               fraction={0.2} // Trigger when 50% visible
             >
-              <Card variant="gradient" className="w-full h-[750px] p-8 bg-teal-300 text-white">
+              <Card variant="gradient" className="w-full md:h-[950px] lg:h-[750px] p-8 bg-teal-300 text-white">
                 <CardHeader
                   floated={false}
                   shadow={false}

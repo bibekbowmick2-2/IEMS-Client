@@ -1,4 +1,4 @@
-import React from 'react';
+
 import img1 from "../assets/section-bg-1.png"
 import { SiSololearn } from "react-icons/si";
 import { MdComputer } from "react-icons/md";
