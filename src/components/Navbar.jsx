@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import  { useContext } from 'react'
 import im1 from '../assets/earlnapp_logo.png'
 import { Link } from "react-router-dom";
 import { ContextProvider } from './AuthProviders/AuthProvider';
@@ -19,7 +19,7 @@ export default function Navbar() {
       });
   };
   return (
-    <div className="bg-[#FFFFFF] w-full z-10 navbar fixed top-0 text-gray-800 outfit-normal  ">
+    <div className="bg-[#FFFFFF] z-10 navbar fixed top-0 text-gray-800 outfit-normal  ">
     <div className="navbar-start">
       <div className="dropdown">
         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
