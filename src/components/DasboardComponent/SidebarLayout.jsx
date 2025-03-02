@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { Sidebar } from "flowbite-react";
 // import { HiArrowSmRight, HiChartPie, HiInbox, HiShoppingBag, HiTable, HiUser } from "react-icons/hi";
 import { HiChartPie, HiInbox, HiTable } from "react-icons/hi";
-import { Link, Links, Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import useAdmin from "../../hooks/useAdmin";
 import { ContextProvider } from "../AuthProviders/AuthProvider";
 import useTutor from "../../hooks/useTutor";
@@ -27,9 +27,9 @@ const SidebarLayout = () => {
 
 
   return (
-    <div className="flex max-w-full md:max-w-8xl lg:max-w-8xl">
+    <div className="flex lg:min-h-screen md:max-w-8xl lg:max-w-8xl">
 
-      <div className={`flex-grow ${isSidebarOpen ? "w-64" : "w-0"} md:w-[45%] lg:w-[20%] bg-white absolute md:static lg:static`}>
+      <div className={`flex-grow ${isSidebarOpen ? "w-64 block" : "hidden"} md:w-[45%] lg:w-[20%] bg-white absolute md:static lg:static`}>
 
         <Sidebar className="bg-white w-full">
           <h1 className="text-2xl md:text-4xl lg:text-4xl text-justify bg-purple-700 text-white font-bold p-5 rounded-xl">Earlnapp</h1>

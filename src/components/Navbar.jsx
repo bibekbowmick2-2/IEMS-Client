@@ -38,7 +38,7 @@ export default function Navbar() {
         </div>
         <ul
           tabIndex={0}
-          className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+          className="menu menu-sm dropdown-content bg-white rounded-box z-[1] mt-3 w-52 p-2 shadow">
           <li className='font-bold text-xl outfit-normal'><a>Home</a></li>
           {
             !user&&<>
@@ -51,7 +51,7 @@ export default function Navbar() {
 
           {
             user&&<> 
-            <Link to='/dasboard'><li className='font-bold text-xl outfit-normal'><a>Dashboard</a></li></Link>
+            <Link to='/sidebar'><li className='font-bold text-xl outfit-normal'><a>Dashboard</a></li></Link>
             </>
           }
           
