@@ -4,7 +4,7 @@ import Service from './Service'
 import Card from './Card'
 import GoogleMap from './GoogleMap'
 import Tutorlist from './Tutorlist'
-
+import WhyChoose from './WhyChoose'
 
 export default function Home() {
   return (
@@ -12,6 +12,7 @@ export default function Home() {
        
        <div className=""><Banner /></div> 
         <Service/>
+        <WhyChoose></WhyChoose>
         <Card/>
         <GoogleMap/>
         <Tutorlist/>

@@ -13,7 +13,7 @@ import scholar from "../assets/scholar.png"
 import { Slide, Fade } from "react-awesome-reveal";
 export default function Service() {
   return (
-    <div className=" bg-[#FFE5E6] outfit-normal rounded-2xl text-gray-700 p-5 md:p-[100px] lg:p-[100px]">
+    <div className="my-[10%] bg-[#FFE5E6] outfit-normal rounded-2xl text-gray-700 p-5 md:p-[100px] lg:p-[100px]">
       <div className="grid grid-cols-1 md:grid-cols-1  lg:grid-cols-2 gap-5">
         <Slide direction="left">
           <div className="w-full  bg-[#FFFFFF] p-5 rounded-xl">
