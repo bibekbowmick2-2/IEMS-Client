@@ -17,7 +17,7 @@ export default function ViewMaterials() {
 
 
 
-  const filterMaterials = materials.filter((f) =>f.tutorEmail === user?.email);
+  const filterMaterials = materials.filter((f) => f.tutorEmail === user?.email);
 
 
   const handleDeleteNote = (material) => {
@@ -40,8 +40,8 @@ export default function ViewMaterials() {
               icon: "success",
               position: "center",
 
-              
-          
+
+
             });
           }
         });
@@ -96,32 +96,37 @@ export default function ViewMaterials() {
 
 
 
-  
+
 
   return (
-    <div>
-      <p className="mb-7 text-5xl font-extrabold text-center">View Materials</p>
-      
+    <div className='bg-white p-5 md:p-[100px] lg:p-[100px]'>
+      <p className="mb-7 text-5xl font-bold text-black text-center">View Materials</p>
 
-      <div className="grid grid-cols-1 md:grid-cols-2  lg:grid-cols-3 gap-4">
+
+      <div className="grid grid-cols-1 md:grid-cols-1  lg:grid-cols-3 gap-4">
         {filterMaterials.map((note) => (
-          <div className="card bg-pink-500 w-96 shadow-xl">
-          <figure>
-    <img
-      src={note.imageUrl}
-      alt="Shoes" />
-  </figure>
-            <div className="card-body">
-              <h2 className="card-title text-black">{note.session_title} Session</h2>
-              <h2 className="card-title text-black">Title:{note.title}</h2>
-              <p >Session ID:{note.sessionId}</p>
-              <p className='overflow-auto' >Drive Link:  <a className='underline' href={note.link}>{note.link}</a></p>
-              <div className="card-actions justify-end">
-                <button onClick={() => handleUpdate(note)} className="btn btn-primary">Update</button>
-                <button onClick={() => handleDeleteNote(note)} className="btn btn-primary">Delete</button>
+          <>
+            <div className="card bg-green-100 w-96 shadow-xl mx-auto mt-5">
+              <figure>
+                <img
+                  src={note.imageUrl}
+                  alt="Shoes" />
+              </figure>
+              <div className="w-full h-[380px] space-y-3 mx-auto p-5">
+                <h2 className="card-title text-black">{note.session_title} Session</h2>
+                <h2 className="card-title text-black">Title:{note.title}</h2>
+                <p className='text-black font-bold'>Session ID:</p>
+                <a className=' text-black' >{note.sessionId}</a>
+                <div className="w-full overflow-scroll text-black ">
+                  <p className='font-bold'>Drive Link:</p>  
+                  <a className='text-black ' href={note.link}>{note.link}</a></div>
+                <div className="card-actions justify-start">
+                  <button onClick={() => handleUpdate(note)} className="btn btn-success text-white border-none">Update</button>
+                  <button onClick={() => handleDeleteNote(note)} className="btn bg-red-500 text-white border-none">Delete</button>
+                </div>
               </div>
             </div>
-          </div>
+          </>
         ))}
       </div>
     </div>
