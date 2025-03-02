@@ -26,7 +26,7 @@ export default function ViewSessions() {
   );
 
   return (
-    <div className="mt-10 bg-green-100 py-[100px] md::px-[70px] lg:px-[100px]">
+    <div className="my-10 bg-green-100 py-[100px] md:px-[70px] lg:px-[100px] ">
       <Slide direction="right">
         <h1 className="text-2xl md:text-4xl lg:text-4xl font-bold text-black text-center">
           Each <span className="text-[#FF7E84]">session course</span> you desire to join from our community
