@@ -14,10 +14,10 @@ import { Slide, Fade } from "react-awesome-reveal";
 export default function Service() {
   return (
     <div className=" bg-[#FFE5E6] outfit-normal rounded-2xl text-gray-700 p-5 md:p-[100px] lg:p-[100px]">
-      <div className="grid grid-cols-1  lg:grid-cols-2 gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-1  lg:grid-cols-2 gap-5">
         <Slide direction="left">
-          <div className="w-full border-2 border-red-50 bg-[#FFFFFF] p-5 rounded-xl">
-            <h1 className="lg:text-4xl text-justify font-bold">
+          <div className="w-full  bg-[#FFFFFF] p-5 rounded-xl">
+            <h1 className="text-2xl md:text-4xl lg:text-4xl text-justify font-bold">
               <span className="text-[#FF7E84]">Payment Methods</span> which you may choose
             </h1>
             <br />
@@ -63,12 +63,12 @@ export default function Service() {
             </div>
             
             <Fade
-                delay={1200} // Wait before starting
+                delay={1000} // Wait before starting
                 duration={1000} // Animation duration
                 fraction={0.5} // Trigger when 50% visible
               >
                  <h1 className="lg:text-4xl text-justify font-bold mt-2">
-              <span >Cards</span>
+              <span className="text-2xl md:text-4xl lg:text-4xl text-justify font-bold" >Cards</span>
             </h1>
                 <div className="grid grid-cols-4 grid-rows-2 mt-5 gap-y-4 bg-teal-400 p-5 rounded-xl ">
                   <div className="w-[100px] h-[60px]"><img className="w-full h-full" src={im1} alt="" /></div>
@@ -86,20 +86,20 @@ export default function Service() {
         </Slide>
 
         <Slide direction="right">
-          <div className="w-full">
-            <div className="grid grid-cols-1  md:gap-x-3 lg:grid-cols-2 lg:grid-rows-4 gap-y-3">
-              <div className="md:row-span-2 lg:row-span-2 border-2 border-white ">
+          <div className="w-full lg:h-[80%] ">
+            <div className="md:mt-[10%] lg:mt-[10%] grid grid-cols-1  md:gap-x-3 lg:grid-cols-2 lg:grid-rows-3 gap-y-3 ">
+              <div className="md:row-span-2 w-full md:w-3/4 lg:w-full mx-auto lg:row-span-2 border-2 border-white ">
                 <img className="w-full rounded-xl" src={card1} alt="" />
               </div>
               <div className=" bg-white rounded-full flex justify-center p-4 ">
-                <div className="w-[70px] lg:w-[90px] "><img className="w-full rounded-xl mt-[10%] md:mt-[70%] lg:mt-[70%]" src={scholar} alt="" /></div>
+                <div className="w-[70px] md:w-[50px] lg:w-[90px] "><img className="w-full rounded-xl mt-[10%] md:mt-[10%] lg:mt-[70%]" src={scholar} alt="" /></div>
                 <h2 className="card-title  text-gray-800 ">25 Years+ of Experience</h2>
               </div>
-              <div className="md:row-span-2 lg:row-span-2 border-2 border-white ">
+              <div className="md:row-span-2 w-full md:w-3/4 lg:w-full mx-auto lg:row-span-2 border-2 border-white ">
                 <img className="w-full h-full rounded-xl" src={card2} alt="" />
               </div>
-              <div className=" bg-white rounded-xl p-5 ">
-                <h2 className="font-bold text-2xl md:text-6xl lg:text-6xl text-gray-800">45+</h2>
+              <div className=" bg-white rounded-full p-2 text-center">
+                <h2 className="font-bold text-2xl md:text-6xl lg:text-6xl text-gray-800 ">45+</h2>
                 <p className="text-blue-600">Award Winning</p>
               </div>
             </div>
