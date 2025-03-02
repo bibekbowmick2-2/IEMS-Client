@@ -29,9 +29,9 @@ const SidebarLayout = () => {
   return (
     <div className="flex lg:min-h-screen md:max-w-8xl lg:max-w-8xl">
 
-      <div className={`flex-grow ${isSidebarOpen ? "w-64 block" : "hidden"} md:w-[45%] lg:w-[20%] bg-white absolute md:static lg:static`}>
+      <div className={`flex-grow ${isSidebarOpen ? "w-64 block" : "hidden"} md:w-[45%] lg:w-[20%] bg-white absolute md:static lg:static z-10`}>
 
-        <Sidebar className="bg-white w-full">
+        <Sidebar className="bg-white w-full z-10">
           <h1 className="text-2xl md:text-4xl lg:text-4xl text-justify bg-purple-700 text-white font-bold p-5 rounded-xl">Earlnapp</h1>
           {
             isAdmin && <Sidebar.Items >
@@ -40,7 +40,7 @@ const SidebarLayout = () => {
                 {
                   isSidebarOpen && <div className="">
                     <button
-                      className="btn bg-purple-700 text-white border-none "
+                      className="btn bg-purple-700 text-white border-none z-10"
                       onClick={toggleSidebar}
                     >
                       <GiHamburgerMenu size={24} />
@@ -142,7 +142,7 @@ const SidebarLayout = () => {
       </div>
 
       {/* Main Content */}
-      <div className="w-full ">
+      <div className="w-full z-0 ">
         <div className="w-full p-5 bg-purple-700 text-white ">
           {
             !isSidebarOpen && <div className="flex">
