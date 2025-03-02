@@ -5,7 +5,7 @@ import Card from './Card'
 import GoogleMap from './GoogleMap'
 import Tutorlist from './Tutorlist'
 import WhyChoose from './WhyChoose'
-
+import TopCourse from './TopCourse'
 export default function Home() {
   return (
     <div className='mx-auto max-w-full lg:max-w-7xl'>
@@ -13,6 +13,7 @@ export default function Home() {
        <div className=""><Banner /></div> 
         <Service/>
         <WhyChoose></WhyChoose>
+        <TopCourse></TopCourse>
         <Card/>
         <GoogleMap/>
         <Tutorlist/>

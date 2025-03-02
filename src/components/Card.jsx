@@ -27,9 +27,9 @@ export default function ViewSessions() {
 
   return (
     <div className="mt-10">
-      <p className="text-5xl font-extrabold text-center">
-        Each session course you desire to join from our community
-      </p>
+      <h1 className="text-2xl md:text-4xl lg:text-4xl font-bold text-black text-center">
+        Each <span className="text-[#FF7E84]">session course</span> you desire to join from our community
+      </h1>
 
       <div className="flex justify-center">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-4 gap-x-3 mt-10">

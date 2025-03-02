@@ -6,7 +6,7 @@ import { FaInstagramSquare } from "react-icons/fa";
 export default function Footer() {
   return (
     <div className='bg-[#0C1427]'>
-      <footer className="footer outfit-normal grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6  text-gray-400 text-[16px] py-[100px]  mx-auto max-w-full lg:max-w-7xl ">
+      <footer className="footer outfit-normal grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6  text-gray-400 text-[16px] py-[100px]  mx-auto max-w-full lg:max-w-7xl p-5 ">
         <div className="col-span-2 space-y-4">
           <h1 className="text-2xl md:text-4xl lg:text-4xl font-bold">Earlnapp</h1>
           <p>Earlapp is an online learning platform that enables teachers and students to connect and conduct classes remotely</p>
