@@ -2,18 +2,31 @@ import React, { useContext, useState } from "react";
 import { Sidebar } from "flowbite-react";
 // import { HiArrowSmRight, HiChartPie, HiInbox, HiShoppingBag, HiTable, HiUser } from "react-icons/hi";
 import { HiChartPie, HiInbox, HiTable } from "react-icons/hi";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import useAdmin from "../../hooks/useAdmin";
 import { ContextProvider } from "../AuthProviders/AuthProvider";
 import useTutor from "../../hooks/useTutor";
 import useStudent from "../../hooks/useStudent";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { FaChevronRight } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 const SidebarLayout = () => {
   const [isAdmin] = useAdmin();
   const [isTutor] = useTutor();
   const [isStudent] = useStudent();
+  const {signOutUser} = useContext(ContextProvider);
+  const navigate = useNavigate();
+
+
+  const  handleSignOut = async() =>{
+     await signOutUser().then(()=>{
+      navigate('/');
+      toast.success('Log out successfully');
+     }).catch((error)=>{
+         console.log("Could not Log out successfully",error)
+     })
+  }
 
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
@@ -156,7 +169,7 @@ const SidebarLayout = () => {
             </div>
           }
 
-          <div className="w-full flex justify-between">
+          <div className="w-full flex justify-between p-3">
             <div >
               {
                 isAdmin && <a className="btn btn-ghost text-2xl lg:text-4xl font-bold outfit-normal">Admin Panel</a>
@@ -196,7 +209,7 @@ const SidebarLayout = () => {
                     </a>
                   </li>
                   <li><a>Settings</a></li>
-                  <li><a>Logout</a></li>
+                  <li><button onClick={handleSignOut}>Logout</button></li>
                 </ul>
               </div>
             </div>
@@ -206,12 +219,16 @@ const SidebarLayout = () => {
 
         </div>
 
-        {/* <div className="mt-10 p-10">
+        <div className="mt-10 p-4 ">
           {isTutor && <p className="text-center front-extrabold text-1xl lg:text-3xl ">The TutorPanel is a dynamic and user-friendly platform designed to streamline the experience for tutors managing their teaching sessions and interacting with students. It empowers tutors by providing essential features like session creation, class scheduling, and student registration tracking, all within an intuitive interface. </p>}
-          {isAdmin && <p className="text-center front-extrabold text-1xl lg:text-3xl ">The TutorPanel is a dynamic and user-friendly platform designed to streamline the experience for tutors managing their teaching sessions and interacting with students. It empowers tutors by providing essential features like session creation, class scheduling, and student registration tracking, all within an intuitive interface. </p>}
+          {isAdmin && <p className="text-center front-extrabold text-1xl lg:text-3xl ">The Admin Panel is a dynamic and user-friendly platform designed to streamline the experience for tutors managing their teaching sessions and interacting with students. It empowers tutors by providing essential features like session creation, class scheduling, and student registration tracking, all within an intuitive interface. </p>}
           {isStudent && <p className="text-center front-extrabold text-1xl lg:text-3xl ">The student panel serves as a centralized platform where students can access study sessions, manage their enrollment, and track their academic progress. It streamlines the learning process by providing an intuitive interface for easy navigation and interaction.</p>}
-        </div> */}
+        </div>
+
+        <div className="bg-gradient-to-r from-[#6DADD9] via-[#9099CD] to-[#8B9ACD]">
         <Outlet></Outlet>
+        </div>
+       
       </div>
     </div>
   );
