@@ -4,9 +4,10 @@ import { useQuery } from "@tanstack/react-query";
 import { ContextProvider } from "../../AuthProviders/AuthProvider";
 import Swal from "sweetalert2";
 
-export default function ManaeNote() {
+export default function ManageNote() {
   const axiosSecure = useAxiosSecure();
   const { user } = useContext(ContextProvider);
+
   const { data: notes = [], refetch } = useQuery({
     queryKey: ["notes"],
     queryFn: async () => {
@@ -16,9 +17,6 @@ export default function ManaeNote() {
   });
 
   const filteredNotes = notes.filter((note) => note.email === user?.email);
-
-  
-
 
   const handleUpdate = (note) => {
     Swal.fire({
@@ -31,8 +29,7 @@ export default function ManaeNote() {
       showCancelButton: true,
       preConfirm: () => {
         const title = Swal.getPopup().querySelector("#note-title").value;
-        const description =
-          Swal.getPopup().querySelector("#note-description").value;
+        const description = Swal.getPopup().querySelector("#note-description").value;
 
         if (!title || !description) {
           Swal.showValidationMessage(`Please enter both title and description`);
@@ -43,13 +40,12 @@ export default function ManaeNote() {
       if (result.isConfirmed) {
         const { title, description } = result.value;
 
-        
         axiosSecure
           .patch(`/manage-note/${note._id}`, { title, description })
           .then((response) => {
             if (response.data.modifiedCount > 0) {
               Swal.fire("Success", "Note updated successfully!", "success");
-              refetch(); 
+              refetch();
             }
           })
           .catch(() => {
@@ -58,10 +54,6 @@ export default function ManaeNote() {
       }
     });
   };
-
-
-
-
 
   const handleDeleteNote = (note) => {
     Swal.fire({
@@ -77,40 +69,46 @@ export default function ManaeNote() {
         axiosSecure.delete(`/delete-note/${note._id}`).then((res) => {
           if (res.data.deletedCount > 0) {
             refetch();
-            Swal.fire({
-              title: "Deleted!",
-              text: "Note has been deleted.",
-              icon: "success",
-              position: "center",
-            });
+            Swal.fire("Deleted!", "Note has been deleted.", "success");
           }
         });
       }
     });
   };
 
-
   if (filteredNotes.length === 0) {
     return (
-      <div className="container   mx-auto py-10 text-center text-red-500">
-        <h1 className="text-3xl">Note Not Available</h1>
+      <div className="flex justify-center items-center h-64">
+        <h1 className="text-3xl text-red-500 font-semibold">No Notes Available</h1>
       </div>
     );
   }
-  return (
-    <div>
-      <p className="mb-7 text-5xl font-extrabold text-center">Manage Notes</p>
 
-      <div className="grid grid-cols-1 md:grid-cols-2  lg:grid-cols-3 gap-4">
+  return (
+    <div className="px-4 py-10 max-w-7xl mx-auto">
+      <h1 className="text-4xl font-bold text-center mb-10 text-purple-700">📚 Manage Your Notes</h1>
+
+      <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {filteredNotes.map((note) => (
-          <div className="card bg-light-blue-500 w-96 shadow-xl">
-            <div className="card-body">
-              <h2 className="card-title text-black">{note.title}</h2>
-              <p>{note.description}</p>
-              <div className="card-actions justify-end">
-                <button onClick={() => handleUpdate(note)} className="btn btn-primary">Update</button>
-                <button onClick={() => handleDeleteNote(note)} className="btn btn-primary">Delete</button>
-              </div>
+          <div
+            key={note._id}
+            className="bg-white border border-gray-200 shadow-lg rounded-xl p-6 hover:shadow-2xl transition duration-300 ease-in-out"
+          >
+            <h2 className="text-xl font-semibold text-gray-800 mb-2">{note.title}</h2>
+            <p className="text-gray-600 mb-4">{note.description}</p>
+            <div className="flex justify-end gap-3">
+              <button
+                onClick={() => handleUpdate(note)}
+                className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md transition"
+              >
+                Update
+              </button>
+              <button
+                onClick={() => handleDeleteNote(note)}
+                className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-md transition"
+              >
+                Delete
+              </button>
             </div>
           </div>
         ))}
