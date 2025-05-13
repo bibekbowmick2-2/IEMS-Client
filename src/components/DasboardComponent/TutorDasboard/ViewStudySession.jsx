@@ -13,7 +13,6 @@ import ReactPaginate from "react-paginate";
 import { ContextProvider } from "../../AuthProviders/AuthProvider";
 import Swal from "sweetalert2";
 
-
 export default function ViewStudySession() {
   const { user } = useContext(ContextProvider);
   const axiosSecure = useAxiosSecure();
@@ -25,53 +24,41 @@ export default function ViewStudySession() {
     },
   });
 
-
-  const filteredUsers = users.filter((f) => f.tutorname === user?.displayName && f.email === user?.email);
-
+  const filteredUsers = users.filter(
+    (f) => f.tutorname === user?.displayName && f.email === user?.email
+  );
 
   const [currentPage, setCurrentPage] = useState(0);
-  const itemsPerPage = 3; 
+  const itemsPerPage = 3;
 
-  
   const startIndex = currentPage * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
 
-  
   const currentItems = filteredUsers.slice(startIndex, endIndex);
 
-  
   const pageCount = Math.ceil(users.length / itemsPerPage);
 
-  
   const handlePageClick = (event) => {
-
     setCurrentPage(event.selected);
-
   };
-
-
 
   const handleSendRequest = (session) => {
-    axiosSecure
-      .patch(`/request/${session._id}`)
-      .then((res) => {
-        if (res.data.modifiedCount > 0) {
-          refetch();
-          Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: `Request sent to Admin!`,
-            showConfirmButton: false,
-            timer: 1700,
-          });
-        }
-      });
+    axiosSecure.patch(`/request/${session._id}`).then((res) => {
+      if (res.data.modifiedCount > 0) {
+        refetch();
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: `Request sent to Admin!`,
+          showConfirmButton: false,
+          timer: 1700,
+        });
+      }
+    });
   };
 
-
-
   return (
-    <div>
+    <div className="min-h-screen px-5 py-10 bg-gradient-to-r from-[#6DADD9] via-[#9099CD] to-[#8B9ACD]">
       <p className="text-3xl font-extrabold text-center mb-11">
         View Study Session
       </p>
@@ -85,34 +72,30 @@ export default function ViewStudySession() {
           pageCount={pageCount}
           onPageChange={handlePageClick}
           containerClassName={"pagination"}
-        
-          
-         
           className="flex gap-3 text-gray-800"
           pageClassName={
-      "flex items-center justify-center px-4 py-2 border border-blue-600 rounded-md cursor-pointer hover:bg-gray-200"
-    }
-    activeClassName={
-      "bg-blue-600 text-white border border-blue-600 font-bold hover:bg-blue-600"
-    }
-    previousLinkClassName={
-      "flex items-center border border-blue-600 justify-center px-4 py-2 border rounded-md cursor-pointer hover:bg-gray-200"
-    }
-    nextLinkClassName={
-      "flex items-center border border-blue-600 justify-center px-4 py-2 border rounded-md cursor-pointer hover:bg-gray-200"
-    }
-    breakClassName={
-      "flex items-center justify-center px-4 py-2 border rounded-md cursor-default"
-    }
-
-
-    disabledClassName={"opacity-50 cursor-not-allowed"}
+            "flex items-center justify-center px-4 py-2 border border-blue-600 rounded-md cursor-pointer hover:bg-gray-200"
+          }
+          activeClassName={
+            "bg-blue-600 text-white border border-blue-600 font-bold hover:bg-blue-600"
+          }
+          previousLinkClassName={
+            "flex items-center border border-blue-600 justify-center px-4 py-2 border rounded-md cursor-pointer hover:bg-gray-200"
+          }
+          nextLinkClassName={
+            "flex items-center border border-blue-600 justify-center px-4 py-2 border rounded-md cursor-pointer hover:bg-gray-200"
+          }
+          breakClassName={
+            "flex items-center justify-center px-4 py-2 border rounded-md cursor-default"
+          }
+          disabledClassName={"opacity-50 cursor-not-allowed"}
         />
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 justify-center mt-10">
+      {/* Cards Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-5 justify-center mt-10">
         {currentItems.map((user) => (
-          <div key={user._id}>
+          <div key={user._id} className="flex justify-center">
             <Card color="gray" variant="gradient" className="w-full max-w-[20rem] p-8">
               <CardHeader
                 floated={false}
@@ -144,32 +127,27 @@ export default function ViewStudySession() {
                   </li>
                   <li className="flex items-start gap-2">
                     <Typography variant="small" className="font-normal">
-                      <strong className="text-cyan-300 font-extrabold">Registration Start:</strong>{" "}
-                      {user.start_date}
+                      <strong className="text-cyan-300 font-extrabold">Registration Start:</strong> {user.start_date}
                     </Typography>
                   </li>
                   <li className="flex items-start gap-2">
                     <Typography variant="small" className="font-normal">
-                      <strong className="text-cyan-300 font-extrabold">Registration End:</strong>{" "}
-                      {user.end_date}
+                      <strong className="text-cyan-300 font-extrabold">Registration End:</strong> {user.end_date}
                     </Typography>
                   </li>
                   <li className="flex items-start gap-2">
                     <Typography variant="small" className="font-normal">
-                      <strong className="text-cyan-300 font-extrabold">Class Start:</strong>{" "}
-                      {user.class_start_date}
+                      <strong className="text-cyan-300 font-extrabold">Class Start:</strong> {user.class_start_date}
                     </Typography>
                   </li>
                   <li className="flex items-start gap-2">
                     <Typography variant="small" className="font-normal">
-                      <strong className="text-cyan-300 font-extrabold">Class End:</strong>{" "}
-                      {user.class_end_date}
+                      <strong className="text-cyan-300 font-extrabold">Class End:</strong> {user.class_end_date}
                     </Typography>
                   </li>
                   <li className="flex items-start gap-2">
                     <Typography variant="small" className="font-normal">
-                      <strong className="text-cyan-300 font-extrabold">Duration:</strong>{" "}
-                      {user.duration} months
+                      <strong className="text-cyan-300 font-extrabold">Duration:</strong> {user.duration} months
                     </Typography>
                   </li>
                   <li className="flex items-start gap-2">
@@ -179,13 +157,17 @@ export default function ViewStudySession() {
                   </li>
                   <li className="flex items-start gap-2">
                     <Typography variant="small" className="font-normal">
-                      <strong className="text-cyan-300 font-extrabold">Status:</strong>{" "}
-                      {user.status.toUpperCase()}
+                      <strong className="text-cyan-300 font-extrabold">Status:</strong> {user.status.toUpperCase()}
                     </Typography>
                   </li>
 
-                 {user.status === "rejected" && <li>
-                 <button className="btn" onClick={() => handleSendRequest(user)} >Send Request to admin</button></li>} 
+                  {user.status === "rejected" && (
+                    <li>
+                      <button className="btn" onClick={() => handleSendRequest(user)}>
+                        Send Request to Admin
+                      </button>
+                    </li>
+                  )}
                 </ul>
               </CardBody>
               <CardFooter className="mt-12 p-0">
@@ -203,12 +185,6 @@ export default function ViewStudySession() {
           </div>
         ))}
       </div>
-
-
-
-      
-
-      
     </div>
   );
 }
