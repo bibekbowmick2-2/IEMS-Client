@@ -1,6 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-
-import { FaTrashAlt, FaUsers } from "react-icons/fa";
+import { FaTrashAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useState } from "react";
@@ -11,6 +10,7 @@ const AllUsers = () => {
   const [query, setQuery] = useState('');
   const [error, setError] = useState('');
   const [searchResults, setSearchResults] = useState(null);
+
   const { data: users = [], refetch } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
@@ -19,158 +19,143 @@ const AllUsers = () => {
     },
   });
 
-
   const dataToDisplay = searchResults || users;
-
-  // const filteredRejectedSessions = dataToDisplay.filter(
-  //   (session) => session.status !== "rejected"
-  // );
-
-
 
   const handleDeleteUser = (user) => {
     Swal.fire({
       title: "Are you sure?",
-      text: "You won't be able to revert this!",
+      text: "This user will be permanently deleted!",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
+      confirmButtonColor: "#2563eb",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonText: "Yes, delete!",
     }).then((result) => {
       if (result.isConfirmed) {
         axiosSecure.delete(`/users/${user._id}`).then((res) => {
           if (res.data.deletedCount > 0) {
             refetch();
-            Swal.fire({
-              title: "Deleted!",
-              text: "Your file has been deleted.",
-              icon: "success",
-            });
+            Swal.fire("Deleted!", "User has been deleted.", "success");
           }
         });
       }
     });
   };
 
-
-
-
-
-
   const handleRoleChange = (user, role) => {
-    axiosSecure.patch(`/users/${role}/${user._id}`)
-      .then(res => {
-        console.log(res.data)
-        if (res.data.modifiedCount > 0) {
-          refetch();
-          Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: `${user.name} is now a ${role}!`,
-            showConfirmButton: false,
-            timer: 1500
-          });
-        }
-      })
-  }
-
-
-
+    axiosSecure.patch(`/users/${role}/${user._id}`).then((res) => {
+      if (res.data.modifiedCount > 0) {
+        refetch();
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: `${user.name} is now a ${role}!`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    });
+  };
 
   const handleSearch = async (e) => {
     e.preventDefault();
     if (!query) {
-      setError('Please enter a search query.');
+      setError("Please enter a search query.");
       return;
     }
 
-  
-
-    setError('');
-    //setLoading(true);
+    setError("");
     try {
-      const response = await axiosSecure.get(`/search?q=${query}`,{
+      const response = await axiosSecure.get(`/search?q=${query}`, {
         timeout: 8000,
       });
 
       if (response.data) {
-        console.log(response.data); 
-        setSearchResults(response.data); 
+        setSearchResults(response.data);
         setQuery("");
-      
-  
-       
       }
-    
     } catch (err) {
-      setError('Error fetching data. Please try again.');
-    } finally {
-      //setLoading(false);
+      setError("Error fetching data. Please try again.");
     }
-
-  }
-
-
-
-  const handleClearSearch = () => {
-    setSearchResults(null); 
-    setQuery("");
-    
-    refetch(); 
   };
 
+  const handleClearSearch = () => {
+    setSearchResults(null);
+    setQuery("");
+    refetch();
+  };
 
   return (
-    <div>
-      <div className="flex justify-evenly my-4">
-        <h2 className="text-3xl">All Users</h2>
-        <h2 className="text-3xl">Total Users: {dataToDisplay.length}</h2>
+    <div className="px-4 py-10 max-w-7xl mx-auto">
+      <div className="flex flex-col md:flex-row justify-between items-center mb-8">
+        <h2 className="text-4xl font-bold text-black">👥 All Users</h2>
+        <h2 className="text-xl text-black mt-2 md:mt-0">
+          Total Users: <span className="font-semibold">{dataToDisplay.length}</span>
+        </h2>
       </div>
 
+      <form onSubmit={handleSearch} className="flex flex-col sm:flex-row items-center gap-3 mb-6">
+        <input
+          type="text"
+          placeholder="Search users by name or email"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          className="w-full sm:w-80 px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+        <button
+          type="submit"
+          className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition"
+        >
+          Search
+        </button>
+        {searchResults && (
+          <button
+            type="button"
+            onClick={handleClearSearch}
+            className="flex items-center gap-1 text-red-500 hover:text-red-700"
+          >
+            <LuSearchX className="text-xl" />
+            Clear
+          </button>
+        )}
+      </form>
 
+      {error && <p className="text-red-500 mb-4">{error}</p>}
 
-      <form className="flex items-center w-[330px] mx-auto" onSubmit={handleSearch}>   
-      <label className="">Search</label>
-      <input className="input p-5 rounded-xl bg-white"  placeholder="Search" type="text" name="" id="" />
-</form>
-
-
-      <div className="overflow-x-auto">
-        <table  className=" w-full p-5 ">
-          {/* head */}
-          <thead>
+      <div className="overflow-x-auto bg-white rounded-lg shadow-md">
+        <table className="min-w-full table-auto text-sm">
+          <thead className="bg-blue-600 text-white">
             <tr>
-              <th></th>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Role</th>
-              <th>Action</th>
+              <th className="px-6 py-3 text-left">#</th>
+              <th className="px-6 py-3 text-left">Name</th>
+              <th className="px-6 py-3 text-left">Email</th>
+              <th className="px-6 py-3 text-left">Role</th>
+              <th className="px-6 py-3 text-left">Action</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="text-gray-700">
             {dataToDisplay.map((user, index) => (
-              <tr key={user._id}>
-                <th>{index + 1}</th>
-                <td>{user.name}</td>
-                <td>{user.email}</td>
-                <td>
+              <tr key={user._id} className="border-b hover:bg-gray-50 transition">
+                <td className="px-6 py-4">{index + 1}</td>
+                <td className="px-6 py-4">{user.name}</td>
+                <td className="px-6 py-4">{user.email}</td>
+                <td className="px-6 py-4">
                   <select
                     value={user.role}
                     onChange={(e) => handleRoleChange(user, e.target.value)}
-                    className="form-select"
+                    className="border px-2 py-1 rounded-md text-sm"
                   >
                     <option value="student">Student</option>
                     <option value="tutor">Tutor</option>
                     <option value="admin">Admin</option>
                   </select>
                 </td>
-                <td>
+                <td className="px-6 py-4">
                   <button
                     onClick={() => handleDeleteUser(user)}
-                    className="btn btn-ghost btn-lg"
+                    className="text-red-600 hover:text-red-800 transition text-lg"
                   >
-                    <FaTrashAlt className="text-red-600"></FaTrashAlt>
+                    <FaTrashAlt />
                   </button>
                 </td>
               </tr>
