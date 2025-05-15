@@ -16,22 +16,22 @@ export default function Service() {
     <div className="my-[10%] bg-[#FFE5E6] outfit-normal rounded-2xl text-gray-700 p-5 md:p-[100px] lg:p-[100px]">
       <div className="grid grid-cols-1 md:grid-cols-1  lg:grid-cols-2 gap-5">
         <Slide direction="left">
-          <div className="w-full  bg-[#FFFFFF] p-5 rounded-xl">
+          <div className="w-full  bg-[#FFFFFF] p-2 md:p-5 lg:p-5 rounded-xl">
             <h1 className="text-2xl md:text-4xl lg:text-4xl text-justify font-bold">
               <span className="text-[#FF7E84]">Payment Methods</span> which you may choose
             </h1>
             <br />
 
-            <div className="grid grid-cols-1  lg:grid-rows-3   gap-y-5 text-white  ">
+            <div className="grid grid-cols-1 gap-3 lg:grid-rows-3   gap-y-5 text-white  ">
               <Fade
                 delay={600} // Wait before starting
                 duration={1000} // Animation duration
                 fraction={0.5} // Trigger when 50% visible
               >
-                <div className="flex gap-5 bg-violet-500   justify-evenly  items-center h-auto p-2 rounded-md bg-teal-400">
-                  <h1 className="text-1xl lg:text-2xl font-extrabold">Lifetime Price</h1>
-                  <p>$50/month</p>
-                  <button className="btn border-2 bg-teal-400 border-white text-white p-1 md:p-2 lg:p-4">Choose</button>
+                <div className="grid grid-cols-3 gap-3 bg-violet-500  items-center h-auto p-2 rounded-md bg-teal-400">
+                  <h1 className="text-sm md:text-2xl lg:text-2xl font-extrabold">Lifetime Price</h1>
+                  <p className="text-sm md:text-lg lg:text-lg">$50/month</p>
+                  <button className="btn-xs md:btn lg:btn border-2 bg-teal-400 border-white text-white p-1">Choose</button>
                 </div>
               </Fade>
 
@@ -40,10 +40,10 @@ export default function Service() {
                 duration={1000} // Animation duration
                 fraction={0.5} // Trigger when 50% visible
               >
-                <div className="flex gap-5 bg-slate-400  justify-evenly  items-center h-auto p-2 rounded-md bg-teal-400">
-                  <h1 className="text-1xl lg:text-2xl font-extrabold">Business Price</h1>
-                  <p>$186/month</p>
-                  <button className="btn bg-teal-400 text-white border-2 border-white p-1 md:p-2 lg:p-4">Choose</button>
+                <div className="grid grid-cols-3 gap-3 bg-violet-500  items-center h-auto p-2 rounded-md bg-teal-400">
+                  <h1 className="text-sm md:text-2xl lg:text-2xl font-extrabold">Business Price</h1>
+                  <p className="text-sm md:text-lg lg:text-lg">$186/month</p>
+                  <button className="btn-xs md:btn lg:btn border-2 bg-teal-400 border-white text-white p-1">Choose</button>
                 </div>
               </Fade>
 
@@ -53,10 +53,10 @@ export default function Service() {
                 duration={1000} // Animation duration
                 fraction={0.5} // Trigger when 50% visible
               >
-                <div className="flex gap-5 bg-violet-500   justify-evenly  items-center h-auto p-2 rounded-md bg-teal-400">
-                  <h1 className="text-1xl lg:text-2xl font-extrabold">Advanced Price</h1>
-                  <p>$886/month</p>
-                  <button className="btn bg-teal-400 text-white border-2 border-white   p-1 md:p-2 lg:p-4">Choose</button>
+                <div className="grid grid-cols-3 bg-violet-500  items-center h-auto p-2 rounded-md bg-teal-400">
+                  <h1 className="text-sm md:text-2xl lg:text-2xl font-extrabold">Advanced Price</h1>
+                  <p className="text-sm md:text-lg lg:text-lg">$886/month</p>
+                  <button className="btn-xs md:btn lg:btn border-2 bg-teal-400 border-white text-white p-1">Choose</button>
                 </div>
               </Fade>
 
@@ -70,15 +70,15 @@ export default function Service() {
                  <h1 className="lg:text-4xl text-justify font-bold mt-2">
               <span className="text-2xl md:text-4xl lg:text-4xl text-justify font-bold" >Cards</span>
             </h1>
-                <div className="grid grid-cols-4 grid-rows-2 mt-5 gap-y-4 bg-teal-400 p-5 rounded-xl ">
-                  <div className="w-[100px] h-[60px]"><img className="w-full h-full" src={im1} alt="" /></div>
-                  <div className="w-[100px] h-[60px]"><img  className="w-full h-full" src={im2} alt="" /></div>
-                  <div className="w-[100px] h-[60px]"> <img  className="w-full h-full" src={im3} alt="" /></div>
-                  <div className="w-[100px] h-[60px]"> <img  className="w-full h-full" src={im4} alt="" /></div>
-                  <div className="w-[100px] h-[60px]"><img  className="w-full h-full" src={im5} alt="" /></div>
-                  <div className="w-[100px] h-[60px]"><img  className="w-full h-full" src={im6} alt="" /></div>
-                  <div className="w-[100px] h-[60px]"><img  className="w-full h-full" src={im7} alt="" /></div>
-                  <div className="w-[100px] h-[60px]"><img  className="w-full h-full" src={im8} alt="" /></div>
+                <div className="grid  grid-cols-3 md:grid-cols-4 lg:grid-cols-4 grid-rows-2 gap-3 mt-5 gap-y-4 bg-teal-400 p-5 rounded-xl ">
+                  <div className="w-[80px] md:w-[100px] lg:w-[100px] h-[60px]"><img className="w-10/12 md:w-full l:w-full mx-auto" src={im1} alt="" /></div>
+                  <div className="w-[80px] md:w-[100px] lg:w-[100px] h-[60px]"><img  className="w-10/12 md:w-full l:w-full mx-auto" src={im2} alt="" /></div>
+                  <div className="w-[80px] md:w-[100px] lg:w-[100px] h-[60px]"> <img  className="w-10/12 md:w-full l:w-full mx-auto" src={im3} alt="" /></div>
+                  <div className="w-[80px] md:w-[100px] lg:w-[100px] h-[60px]"> <img  className="w-10/12 md:w-full l:w-full mx-auto" src={im4} alt="" /></div>
+                  <div className="w-[80px] md:w-[100px] lg:w-[100px] h-[60px]"><img  className="w-10/12 md:w-full l:w-full mx-auto" src={im5} alt="" /></div>
+                  <div className="w-[80px] md:w-[100px] lg:w-[100px] h-[60px]"><img  className="w-10/12 md:w-full l:w-full mx-auto" src={im6} alt="" /></div>
+                  <div className="w-[80px] md:w-[100px] lg:w-[100px] h-[60px]"><img  className="w-10/12 md:w-full l:w-full mx-auto" src={im7} alt="" /></div>
+                  <div className="w-[80px] md:w-[100px] lg:w-[100px] h-[60px]"><img  className="w-10/12 md:w-full l:w-full mx-auto" src={im8} alt="" /></div>
             </div>
               </Fade>
             
